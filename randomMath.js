@@ -49,8 +49,19 @@ const Pattern = function(code, vars) {
 };
 
 const mainDiv = document.getElementById("mainDiv");
-const topPatterns = [new Pattern(" + {%s}", 1), new Pattern(" \\sum_{%s}^{%s}", 2)];
-const middlePatterns = [new Pattern("{%s} ^ {%s}", 2), new Pattern("{%s} + {%s}", 2), new Pattern(" \\sum_{%s}^{%s}", 2)];
+const topPatterns = [], middlePatterns = [];
+fileReader.read("TopPatterns.txt", function(read) {
+	tokens = fileReader.getTokensFrom(read, null, '\n');
+	for(var i = 1;i < tokens.length;i += 2) {
+		topPatterns.push(new Pattern(tokens[i - 1], parseInt(tokens[i])));
+	}
+});
+fileReader.read("MiddlePatterns.txt", function(read) {
+	tokens = fileReader.getTokensFrom(read, null, '\n');
+	for(var i = 1;i < tokens.length;i += 2) {
+		middlePatterns.push(new Pattern(tokens[i - 1], parseInt(tokens[i])));
+	}
+});
 const tree = new Tree();
 const DEPTH_LIMIT = 2;
 var stopped = false;
