@@ -10,5 +10,13 @@
 2
 \prod_{%s}^{%s}
 2
-log_{%s}{%s}
+\log_{%s}{%s}
+2
+\overline{%s}
+1
+\overrightarrow{%s}
+1
+{%s} \pm {%s}
+2
+{%s}_{%s}
 2

@@ -27,6 +27,8 @@ const codify = function(node) {
 		var result = "";
 		for(var i = 0;i < node.children.length;i++) {
 			result = result.concat(codify(node.children[i]));
+			//if(i % 10 === 9) //TODO: Add an option to use this instead of the MathJax config for line break
+				//result += '\\\\';
 		}
 		return result; //Top-level return statement
 	}
@@ -39,8 +41,9 @@ const codify = function(node) {
 	}
 };
 
-const stop = function() {
-	stopped = true;
+const toggle = function() {
+	stopped = !stopped;
+	if(!stopped) update();
 }
 
 const Pattern = function(code, vars) {
@@ -63,7 +66,7 @@ fileReader.read("MiddlePatterns.txt", function(read) {
 	}
 });
 const tree = new Tree();
-const DEPTH_LIMIT = 2;
+const DEPTH_LIMIT = 3;
 var stopped = false;
 
 tree.addNode(tree.root).pat = new Pattern("{%s} - {%s}", 2);
@@ -71,6 +74,8 @@ tree.addNode(tree.allNodes[1][0]).pat = "1";
 tree.addNode(tree.allNodes[1][0]).pat = "i";
 
 const update = function() {
+	if(stopped)
+		return;
 	const jax = MathJax.Hub.getAllJax(mainDiv)[0];
 	const depth = Math.floor(Math.random() * (Math.min(tree.allNodes.length - 1, DEPTH_LIMIT)));
 	//if(tree.allNodes.length > 1 && Math.random() > 0.5) { //Remove a Node
@@ -94,8 +99,7 @@ const update = function() {
 	MathJax.Hub.Queue(["Text", jax, codify(tree.root)]);
 	console.log(codify(tree.root));
 	console.log(tree);
-	if(!stopped)
-		setTimeout(update, 1000);
+	setTimeout(update, 500);
 };
 //Wait until MathJax processes the initial jax. TODO: Synchronize instead of relying on an arbitrary timeout
 setTimeout(update, 1000);

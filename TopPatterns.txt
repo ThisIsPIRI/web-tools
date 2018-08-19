@@ -10,3 +10,11 @@
 1
  \prod_{%s}^{%s}
 2
+\overline{%s}
+1
+\overrightarrow{%s}
+1
+ \pm {%s}
+1
+ ({%s})
+1
