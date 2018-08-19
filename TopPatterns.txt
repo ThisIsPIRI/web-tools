@@ -2,6 +2,8 @@
 1
  - {%s}
 1
+ \cdot {%s}
+1
  \div {%s}
 1
  \sum_{%s}^{%s}
@@ -18,3 +20,7 @@
 1
  ({%s})
 1
+\frac{\partial {%s}}{\partial {%s}}({%s})
+3
+\int_{%s}^{%s}
+2

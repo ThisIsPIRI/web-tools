@@ -4,6 +4,8 @@
 2
 {%s} - {%s}
 2
+{%s} \cdot {%s}
+2
 \frac{%s}{%s}
 2
 \sum_{%s}^{%s}
@@ -20,3 +22,7 @@
 2
 {%s}_{%s}
 2
+\frac{\partial {%s}}{\partial {%s}}({%s})
+3
+\int_{%s}^{%s} {%s}
+3
