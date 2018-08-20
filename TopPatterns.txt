@@ -26,7 +26,5 @@
 2
  \sqrt{%s}
 1
- \sqrt[%s]{%s}
-2
  \lim_{{%s} \rightarrow {%s}}{%s}
 3
