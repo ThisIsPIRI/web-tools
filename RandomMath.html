@@ -18,6 +18,12 @@
 	<body>
 		<div id="mainDiv">$$a$$</div>
 		<button id="toggleButton" onclick="toggle()">Stop</button>
+		<label>Background update per second
+			<input id="treeUpdateRate" type="number" value="5" step="0.1" min="0.1" max="500" onchange="changed(this, this.value)">
+		</label>
+		<label>Display update per background update
+			<input id="displayUpdateRate" type="number" value="0.5" step="0.1" min="0.1" max="1" onchange="changed(this, this.value)">
+		</label>
 	</body>
 	<script src="randomMath.js"></script>
 </html>

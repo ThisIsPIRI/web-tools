@@ -12,15 +12,21 @@
 1
  \prod_{%s}^{%s}
 2
-\overline{%s}
+ \overline{%s}
 1
-\overrightarrow{%s}
+ \overrightarrow{%s}
 1
  \pm {%s}
 1
  ({%s})
 1
-\frac{\partial {%s}}{\partial {%s}}({%s})
+ \frac{\partial {%s}}{\partial {%s}}({%s})
 3
-\int_{%s}^{%s}
+ \int_{%s}^{%s}
 2
+ \sqrt{%s}
+1
+ \sqrt[%s]{%s}
+2
+ \lim_{{%s} \rightarrow {%s}}{%s}
+3

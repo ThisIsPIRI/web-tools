@@ -3,21 +3,43 @@ const toggle = function() {
 	stopped = !stopped;
 	if(!stopped) update();
 	toggleButton.innerHTML = stopped ? "Start" : "Stop";
+	cycle = 0;
 };
+
+const changed = function(type, value) {
+	value = parseFloat(value);
+	if(isNaN(value)) return;
+	switch(type) {
+	case treeRateInput:
+		timeout = Math.floor(1000 / value);
+		break;
+	case displayRateInput:
+		cycleLimit = Math.round(1 / value);
+		break;
+	}
+}
 
 const update = function() {
 	if(stopped)
 		return;
 	modifyTree(tree, DEPTH_LIMIT, topPatterns, middlePatterns);
-	MathJax.Hub.Queue(["Text", MathJax.Hub.getAllJax(mainDiv)[0], codify(tree.root)]);
-	setTimeout(update, 500);
+	cycle++;
+	if(cycle >= cycleLimit) {
+		MathJax.Hub.Queue(["Text", MathJax.Hub.getAllJax(mainDiv)[0], codify(tree.root)]);
+		cycle = 0;
+	}
+	setTimeout(update, timeout);
 };
 const mainDiv = document.getElementById("mainDiv");
 const toggleButton = document.getElementById("toggleButton");
+const treeRateInput = document.getElementById("treeUpdateRate");
+const displayRateInput = document.getElementById("displayUpdateRate");
 const topPatterns = [], middlePatterns = [];
 const tree = new Tree();
 const DEPTH_LIMIT = 3;
 var stopped = false;
+var cycle = 0;
+var timeout = 200, cycleLimit = 2;
 
 //Initialization
 readPatterns("TopPatterns.txt", topPatterns);
