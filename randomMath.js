@@ -1,4 +1,12 @@
 //UI-specific code
+const confirmRead = function() {
+	if(confirmRead.count == undefined)
+		confirmRead.count = 0;
+	confirmRead.count++;
+	if(confirmRead.count >= 2)
+		toggle();
+}
+
 const toggle = function() {
 	stopped = !stopped;
 	if(!stopped) update();
@@ -37,18 +45,16 @@ const displayRateInput = document.getElementById("displayUpdateRate");
 const topPatterns = [], middlePatterns = [];
 const tree = new Tree();
 const DEPTH_LIMIT = 3;
-var stopped = false;
+var stopped = true;
 var cycle = 0;
 var timeout = 200, cycleLimit = 2;
 
 //Initialization
-readPatterns("TopPatterns.txt", topPatterns);
-readPatterns("MiddlePatterns.txt", middlePatterns);
+readPatterns("TopPatterns.txt", topPatterns, confirmRead);
+readPatterns("MiddlePatterns.txt", middlePatterns, confirmRead);
 tree.addNode(tree.root).pat = new Pattern("{%s} - {%s}", 2);
 tree.addNode(tree.allNodes[1][0]).pat = "1";
 tree.addNode(tree.allNodes[1][0]).pat = "i";
 //Read the values in case they are cached
 changed(treeRateInput, treeRateInput.value);
 changed(displayRateInput, displayRateInput.value);
-//Wait until MathJax processes the initial jax and all Patterns are read. TODO: Synchronize instead of relying on an arbitrary timeout
-setTimeout(update, 2000);
