@@ -1,6 +1,6 @@
 body {
 	color:white;
-	background:url("bg0.jpg") no-repeat center center fixed;
+	background:url("bg/bg0.png") no-repeat center center fixed;
 	background-size:cover;
 	height:100%;
 	width:100%;
