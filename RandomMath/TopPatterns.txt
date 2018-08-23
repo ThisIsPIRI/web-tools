@@ -1,0 +1,30 @@
+ + {%s}
+1
+ - {%s}
+1
+ \cdot {%s}
+1
+ \div {%s}
+1
+ \sum_{%s}^{%s}
+2
+ {%s}
+1
+ \prod_{%s}^{%s}
+2
+ \overline{%s}
+1
+ \overrightarrow{%s}
+1
+ \pm {%s}
+1
+ ({%s})
+1
+ \frac{\partial {%s}}{\partial {%s}}({%s})
+3
+ \int_{%s}^{%s}
+2
+ \sqrt{%s}
+1
+ \lim_{{%s} \rightarrow {%s}}{%s}
+3

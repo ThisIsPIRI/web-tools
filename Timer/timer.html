@@ -1,0 +1,37 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>타이머</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<article>
+			<p id="timeShower">00:00</p>
+			<div id="controls">
+				<p id="controlButtons">
+					<button onclick="timer.start();">시작</button>
+					<button onclick="timer.pause();">일시정지</button>
+					<button onclick="timer.stop(false);">초기화</button>
+				</p>
+				<p id="timeButtons">
+					<button onclick="timer.addTime(3600000);">1시간</button>
+					<button onclick="timer.addTime(60000);">1분</button>
+					<button onclick="timer.addTime(30000);">30초</button>
+					<button onclick="timer.addTime(1000);">1초</button>
+					<input id="customTime" type="number">
+					<button onclick="addCustom();">초</button>
+				</p>
+				<p id="showChecks">
+					<label><input id="showHoursCheck" type="checkbox" onchange="changeVisibility(this);">1시간 이상 보이기</label>
+					<label><input id="showUnderOneCheck" type="checkbox" onchange="changeVisibility(this);">1초 미만 보이기</label>
+				</p>
+			</div>
+		</article>
+		<button onclick="changeBackground();">배경 변경</button>
+		<footer>Image: NASA</footer>
+		<script src="background.js"></script>
+		<script src="lib/Timer.js"></script>
+		<script src="timer.js"></script>
+	</body>
+</html>

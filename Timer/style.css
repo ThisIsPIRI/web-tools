@@ -1,0 +1,24 @@
+body {
+	color:white;
+	background:url("bg0.jpg") no-repeat center center fixed;
+	background-size:cover;
+	height:100%;
+	width:100%;
+	margin:auto;
+	text-align:center;
+	font-family:batang;
+}
+article {
+	font-size:320%;	
+}
+#timeShower {
+	font-size:400%;
+	margin-top:14%;
+}
+#controls {
+	margin-top:-14%;
+	font-size:40%;
+}
+footer {
+	font-size:70%;
+}
