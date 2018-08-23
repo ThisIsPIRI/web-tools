@@ -22,6 +22,6 @@ const timeShower = document.getElementById("timeShower");
 const customTime = document.getElementById("customTime");
 const showHoursCheck = document.getElementById("showHoursCheck");
 const showUnderOneCheck = document.getElementById("showUnderOneCheck");
-const footer = document.getElementsByTagName("footer")[0];
+const imageCredit = document.getElementById("imageCredit");
 const timeup = new Audio("sound/timeup.mp3");
 const timer = new Timer(stopped, updateTime);

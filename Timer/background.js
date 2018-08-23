@@ -17,5 +17,5 @@ const changeBackground = function() {
 	window.backgroundNum = (window.backgroundNum + 1) % window.backgroundList.length;
 	body.style.backgroundImage = "url(\"" + window.backgroundList[window.backgroundNum].fileName + "\")";
 	body.style.color = window.backgroundList[window.backgroundNum].enabledColor;
-	footer.innerHTML = "Image: " + window.backgroundList[window.backgroundNum].author;
+	imageCredit.innerHTML = "Image: " + window.backgroundList[window.backgroundNum].author;
 }

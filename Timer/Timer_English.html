@@ -1,0 +1,42 @@
+﻿<!--TODO: Find a better way for translations-->
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>PIRI Timer</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<article>
+			<p id="timeShower">00:00</p>
+			<div id="controls">
+				<p id="controlButtons">
+					<button onclick="timer.start();">Start</button>
+					<button onclick="timer.pause();">Pause</button>
+					<button onclick="timer.stop(false);">Stop</button>
+				</p>
+				<p id="timeButtons">
+					<button onclick="timer.addTime(3600000);">1h</button>
+					<button onclick="timer.addTime(60000);">1m</button>
+					<button onclick="timer.addTime(30000);">30s</button>
+					<button onclick="timer.addTime(1000);">1s</button>
+					<input id="customTime" type="number">
+					<button onclick="addCustom();">s</button>
+				</p>
+				<p id="showChecks">
+					<label><input id="showHoursCheck" type="checkbox" onchange="changeVisibility(this);">Show over 1h</label>
+					<label><input id="showUnderOneCheck" type="checkbox" onchange="changeVisibility(this);">Show under 1s</label>
+				</p>
+			</div>
+		</article>
+		<button onclick="changeBackground();">Change background</button>
+				<footer>
+			<span id="imageCredit">Image: NASA</span>
+			<br>
+			<a href="Timer_Korean.html">Korean version</a>
+		</footer>
+		<script src="background.js"></script>
+		<script src="lib/Timer.js"></script>
+		<script src="timer.js"></script>
+	</body>
+</html>
