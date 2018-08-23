@@ -1,6 +1,3 @@
-const addCustom = function() {
-	timer.addTime(parseInt(customTime.value) * 1000);
-};
 const changeVisibility = function(ofWhat) {
 	switch(ofWhat) {
 	case showHoursCheck:
@@ -25,3 +22,7 @@ const showUnderOneCheck = document.getElementById("showUnderOneCheck");
 const imageCredit = document.getElementById("imageCredit");
 const timeup = new Audio("sound/timeup.mp3");
 const timer = new Timer(stopped, updateTime);
+
+//Update for potential cached values
+changeVisibility(showHoursCheck);
+changeVisibility(showUnderOneCheck);

@@ -20,7 +20,7 @@
 					<button onclick="timer.addTime(30000);">30초</button>
 					<button onclick="timer.addTime(1000);">1초</button>
 					<input id="customTime" type="number">
-					<button onclick="addCustom();">초</button>
+					<button onclick="timer.addTime(parseInt(customTime.value) * 1000);">초</button>
 				</p>
 				<p id="showChecks">
 					<label><input id="showHoursCheck" type="checkbox" onchange="changeVisibility(this);">1시간 이상 보이기</label>

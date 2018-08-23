@@ -21,7 +21,7 @@
 					<button onclick="timer.addTime(30000);">30s</button>
 					<button onclick="timer.addTime(1000);">1s</button>
 					<input id="customTime" type="number">
-					<button onclick="addCustom();">s</button>
+					<button onclick="timer.addTime(parseInt(customTime.value) * 1000);">s</button>
 				</p>
 				<p id="showChecks">
 					<label><input id="showHoursCheck" type="checkbox" onchange="changeVisibility(this);">Show over 1h</label>
