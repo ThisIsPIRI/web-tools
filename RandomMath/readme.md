@@ -1,5 +1,5 @@
 # PIRI Random Math
-Generates random nonsense in the mathematical notation. Try [here](https://thisispiri.github.io/random-math).
+Generates random nonsense in the mathematical notation.
 
 ## Dependencies
 Requires file.js and Tree.js from [my JS Library](https://github.com/ThisIsPIRI/js-library). Already included.
