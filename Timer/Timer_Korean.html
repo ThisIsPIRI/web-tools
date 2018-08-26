@@ -16,11 +16,13 @@
 				</p>
 				<p id="timeButtons">
 					<button onclick="timer.addTime(3600000);">1시간</button>
+					<button onclick="timer.addTime(300000);">5분</button>
 					<button onclick="timer.addTime(60000);">1분</button>
-					<button onclick="timer.addTime(30000);">30초</button>
+					<button onclick="timer.addTime(10000);">10초</button>
 					<button onclick="timer.addTime(1000);">1초</button>
 					<input id="customTime" type="number">
 					<button onclick="timer.addTime(parseInt(customTime.value) * 1000);">초</button>
+					<button onclick="timer.addTime(parseInt(customTime.value) * 60000);">분</button>
 				</p>
 				<p id="showChecks">
 					<label><input id="showHoursCheck" type="checkbox" onchange="changeVisibility(this);">1시간 이상 보이기</label>

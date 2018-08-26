@@ -17,11 +17,13 @@
 				</p>
 				<p id="timeButtons">
 					<button onclick="timer.addTime(3600000);">1h</button>
+					<button onclick="timer.addTime(300000);">5m</button>
 					<button onclick="timer.addTime(60000);">1m</button>
-					<button onclick="timer.addTime(30000);">30s</button>
+					<button onclick="timer.addTime(10000);">10s</button>
 					<button onclick="timer.addTime(1000);">1s</button>
 					<input id="customTime" type="number">
 					<button onclick="timer.addTime(parseInt(customTime.value) * 1000);">s</button>
+					<button onclick="timer.addTime(parseInt(customTime.value) * 60000);">m</button>
 				</p>
 				<p id="showChecks">
 					<label><input id="showHoursCheck" type="checkbox" onchange="changeVisibility(this);">Show over 1h</label>
