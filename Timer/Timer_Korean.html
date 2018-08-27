@@ -21,8 +21,8 @@
 					<button onclick="timer.addTime(10000);">10초</button>
 					<button onclick="timer.addTime(1000);">1초</button>
 					<input id="customTime" type="number">
-					<button onclick="timer.addTime(parseInt(customTime.value) * 1000);">초</button>
-					<button onclick="timer.addTime(parseInt(customTime.value) * 60000);">분</button>
+					<button onclick="timer.addTime(parseInt(customTime.value) * 1000 || 0);">초</button>
+					<button onclick="timer.addTime(parseInt(customTime.value) * 60000 || 0);">분</button>
 				</p>
 				<p id="showChecks">
 					<label><input id="showHoursCheck" type="checkbox" onchange="changeVisibility(this);">1시간 이상 보이기</label>
