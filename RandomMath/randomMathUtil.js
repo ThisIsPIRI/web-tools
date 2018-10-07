@@ -5,8 +5,8 @@ const Pattern = function(code, vars) {
 };
 
 const readPatterns = function(fileName, toPushTo, callback) {
-	fileReader.read(fileName, function(read) {
-		tokens = fileReader.getTokensFrom(read, null, '\n');
+	ajaxRequester.request(fileName, function(read) {
+		tokens = ajaxRequester.getTokensFrom(read, null, '\n');
 		for(var i = 1;i < tokens.length;i += 2) {
 			toPushTo.push(new Pattern(tokens[i - 1], parseInt(tokens[i])));
 		}
