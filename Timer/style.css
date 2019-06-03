@@ -2,6 +2,7 @@ body {
 	color:white;
 	background:url("bg/bg0.png") no-repeat center center fixed;
 	background-size:cover;
+	background-color:black;
 	height:100%;
 	width:100%;
 	margin:auto;
@@ -12,7 +13,7 @@ article {
 	font-size:320%;	
 }
 #timeShower {
-	font-size:400%;
+	font-size:420%;
 	margin-top:14%;
 }
 #controls {
@@ -21,4 +22,8 @@ article {
 }
 footer {
 	font-size:70%;
+}
+button {
+	width:8em;
+	height:4em;
 }

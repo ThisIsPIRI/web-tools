@@ -1,5 +1,5 @@
 # PIRI Web Tools
-Use [here](https://thisispiri.github.io/web-tools).
+Use [here](https://phost.gitlab.io).
 
 ## Random Math
 Generates nonsense in the mathematical notation.

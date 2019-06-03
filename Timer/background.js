@@ -1,4 +1,3 @@
-//background changing
 //constructor for Background objects
 const Background = function(fileName, enabledColor, disabledColor, author) {
 	this.fileName = fileName;
