@@ -5,7 +5,7 @@ const Background = function(fileName, enabledColor, disabledColor, author) {
 	this.disabledColor = disabledColor;
 	this.author = author;
 }
-backgroundData = [["bg/bg0.png", "rgb(255, 255, 255)", "rgb(30, 30, 30)", "Public domain"], ["bg/bg1.jpg", "rgb(255, 255, 255)", "rgb(30, 30, 30)", "NASA"]];
+backgroundData = [["bg/bg0.png", "rgb(255, 255, 255)", "rgb(30, 30, 30)", "Public domain"], ["bg/bg1.png", "rgb(0, 0, 0)", "rgb(200, 200, 200)", "Public domain"]];
 backgroundList = [];
 for(var i = 0;i < backgroundData.length;i++) {
 	backgroundList.push(new Background(backgroundData[i][0], backgroundData[i][1], backgroundData[i][2], backgroundData[i][3]));
