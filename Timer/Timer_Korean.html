@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>PIRI 타이머</title>
+		<title>피리 시간잼틀</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
@@ -10,9 +10,9 @@
 			<p id="timeShower">00:00</p>
 			<div id="controls">
 				<p id="controlButtons">
-					<button onclick="timer.start();">시작</button>
-					<button onclick="timer.pause();">일시정지</button>
-					<button onclick="timer.stop(false);">초기화</button>
+					<button onclick="timer.start();">돌리기</button>
+					<button onclick="timer.pause();">멈추기</button>
+					<button onclick="timer.stop(false);">지우기</button>
 				</p>
 				<p id="timeButtons">
 					<button onclick="timer.addTime(3600000);">1시간</button>
@@ -25,12 +25,12 @@
 					<button onclick="timer.addTime(parseInt(customTime.value) * 60000 || 0);">분</button>
 				</p>
 				<p id="showChecks">
-					<label><input id="showHoursCheck" type="checkbox" onchange="changeVisibility(this);">1시간 이상 보이기</label>
-					<label><input id="showUnderOneCheck" type="checkbox" onchange="changeVisibility(this);">1초 미만 보이기</label>
+					<label><input id="showHoursCheck" type="checkbox" onchange="changeVisibility(this);">1시간 위도 보이기</label>
+					<label><input id="showUnderOneCheck" type="checkbox" onchange="changeVisibility(this);">1초 밑도 보이기</label>
 				</p>
 			</div>
 		</article>
-		<button onclick="changeBackground();">배경 변경</button>
+		<button onclick="changeBackground();">바탕 바꾸기</button>
 		<footer>
 			<span id="imageCredit">Image: Public domain</span>
 			<br>
