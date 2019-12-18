@@ -14,12 +14,16 @@ const stopped = function(timeRanOut) {
 	if(timeRanOut)
 		timeup.play();
 };
+const changeTitle = function(toWhat) {
+	document.title = toWhat;
+}
 
 const timeShower = document.getElementById("timeShower");
 const customTime = document.getElementById("customTime");
 const showHoursCheck = document.getElementById("showHoursCheck");
 const showUnderOneCheck = document.getElementById("showUnderOneCheck");
 const imageCredit = document.getElementById("imageCredit");
+const customTitle = document.getElementById("customTitle");
 const timeup = new Audio("sound/timeup.mp3");
 const timer = new Timer(stopped, updateTime, format);
 

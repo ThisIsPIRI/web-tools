@@ -29,6 +29,10 @@
 					<label><input id="showHoursCheck" type="checkbox" onchange="changeVisibility(this);">Show over 1h</label>
 					<label><input id="showUnderOneCheck" type="checkbox" onchange="changeVisibility(this);">Show under 1s</label>
 				</p>
+				<p id="textChanges">
+					<input id="customTitle" type="text" placeholder="Custom title...">
+					<button onclick="changeTitle(customTitle.value);">Apply</button>
+				</p>
 			</div>
 		</article>
 		<button onclick="changeBackground();">Change background</button>

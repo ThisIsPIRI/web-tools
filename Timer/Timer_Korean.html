@@ -28,6 +28,10 @@
 					<label><input id="showHoursCheck" type="checkbox" onchange="changeVisibility(this);">1시간 위도 보이기</label>
 					<label><input id="showUnderOneCheck" type="checkbox" onchange="changeVisibility(this);">1초 밑도 보이기</label>
 				</p>
+				<p id="textChanges">
+					<input id="customTitle" type="text" placeholder="누리쪽 이름">
+					<button onclick="changeTitle(customTitle.value);">바꾸기</button>
+				</p>
 			</div>
 		</article>
 		<button onclick="changeBackground();">바탕 바꾸기</button>
