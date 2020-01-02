@@ -14,10 +14,6 @@ const toggle = function() {
 	cycle = 0;
 };
 
-const display = function(mathString) {
-	MathJax.Hub.Queue(["Text", MathJax.Hub.getAllJax(mainDiv)[0], mathString]);
-};
-
 const makeInitTree = function() {
 	const tree = new Tree();
 	tree.addNode(tree.root).pat = new Pattern("{%s} - {%s}", 2);
@@ -29,7 +25,7 @@ const makeInitTree = function() {
 const erase  = function() {
 	if(!stopped) toggle();
 	tree = makeInitTree();
-	display(codify(tree.root));
+	display(codify(tree.root), document.querySelector('input[name="backend"]:checked').value);
 };
 
 const changed = function(type, value) {
@@ -51,11 +47,36 @@ const update = function() {
 	modifyTree(tree, DEPTH_LIMIT, topPatterns, middlePatterns);
 	cycle++;
 	if(cycle >= cycleLimit) {
-		display(codify(tree.root));
+		display(codify(tree.root), document.querySelector('input[name="backend"]:checked').value);
 		cycle = 0;
 	}
 	setTimeout(update, timeout);
 };
+
+//Dealing with math APIs
+const display = function(mathString, backend) {
+	switch(backend) {
+	case "katex":
+		katex.render(mathString, mainDiv);
+		break;
+	case "mathjax":
+		MathJax.Hub.Queue(["Text", MathJax.Hub.getAllJax(mainDiv)[0], mathString]);
+		break;
+	}
+};
+
+const mathjaxInit = function() {
+	//Make a new jax and scan it since the previous one is gone from switching to KaTeX
+	mainDiv.innerHTML = "$$" + codify(tree.root) + "$$";
+	MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+};
+
+const katexInit = function() {
+	//Just so formula is updated consistently when switching backend while paused, whether switching to KaTeX or MathJax
+	katex.render(codify(tree.root), mainDiv);
+}
+
+//Variables
 const mainDiv = document.getElementById("mainDiv");
 const toggleButton = document.getElementById("toggleButton");
 const treeRateInput = document.getElementById("treeUpdateRate");
