@@ -3,14 +3,51 @@ const 낱말 = function(몇째, 말, 바꿈꼴, 붙임) {
 	this.말 = 말; //낱말 글씨줄(문자열)
 	this.바꿈꼴 = 바꿈꼴; //바꿈꼴, 사투리 따위
 	this.붙임 = 붙임; //아랫붙임(주)
-}
+};
 const 들온말 = function(몇째, 말, 바꿈꼴, 뿌리, 붙임) {
 	낱말.call(this, 몇째, 말, 바꿈꼴, 붙임);
 	this.뿌리 = 뿌리; //말뿌리
+};
+
+const 다듬은말 = function(늘들온말, 늘낱말) {
+	this.늘들온말 = 늘들온말;
+	this.늘낱말 = 늘낱말;
 }
 
-const acceptMalmoi = function(content) {
-	
+const 들온말읽기 = function(글) {
+	return new 들온말(0, 글);
+};
+
+const 맨말읽기 = function(글) {
+	//글 = 글.replace(/ *\[(^])*\] */g, "")
+	return new 낱말(0, 글, null, null);
+};
+
+const 말읽기 = function(안글, 읽는수) {
+	안글 = 안글.split('/');
+	return 안글.map(읽는수);
 }
 
-ajaxRequester.request("manuri.malmoi", acceptMalmoi);
+const 줄읽기 = function(줄) {
+	줄 = 줄.split(' ');
+	return new 다듬은말(말읽기(줄[0], 들온말읽기), 말읽기(줄[1], 맨말읽기));
+};
+
+const 말모이읽기 = function(안글) {
+	const 늘줄 = ajaxRequester.getTokensFrom(안글, null, '\n');
+	늘줄.forEach(function(줄) {
+		if(줄[0] === '#')
+			return;
+		else if(줄[0] === '*')
+			return; //TODO: footnote parsing
+		else if(줄 === '')
+			return; //TODO: parse sections?
+		else
+			늘낱말.push(줄읽기(줄));
+	});
+	console.log(늘낱말);
+};
+
+const 늘낱말 = [];
+
+ajaxRequester.request("manuri.malmoi", 말모이읽기);
