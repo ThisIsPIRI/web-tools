@@ -1,7 +1,10 @@
 Array.prototype.넣기 = Array.prototype.push;
 Array.prototype.하나하나 = Array.prototype.forEach;
-Array.prototype.타기 = Array.prototype.map;
+Array.prototype.태우기 = Array.prototype.map;
 String.prototype.가르기 = String.prototype.split;
+String.prototype.몇째칸 = String.prototype.indexOf;
+String.prototype.잘라내기 = String.prototype.slice;
+String.prototype.작은줄 = String.prototype.substring;
 console.쓰기 = console.log;
 ajaxRequester.가져오기 = ajaxRequester.request;
 ajaxRequester.가르기 = ajaxRequester.getTokensFrom;
@@ -10,12 +13,12 @@ const 안고치손 = ajaxRequester; //안 고치고 가져오(AJAX)는 손
 const 낱말 = function(몇째, 말, 바꿈꼴, 붙임) {
 	this.몇째 = 몇째; //낱말이 말모이에서 몇 째인지
 	this.말 = 말; //낱말 글씨줄(문자열)
-	this.바꿈꼴 = 바꿈꼴; //바꿈꼴, 사투리 따위
+	this.바꿈꼴 = 바꿈꼴; //바꿈꼴, 사투리 글씨줄 늘넣이(배열)
 	this.붙임 = 붙임; //아랫붙임(주)
 };
-const 들온말 = function(몇째, 말, 바꿈꼴, 뿌리, 붙임) {
+const 들온말 = function(몇째, 말, 바꿈꼴, 밑, 붙임) {
 	낱말.call(this, 몇째, 말, 바꿈꼴, 붙임);
-	this.뿌리 = 뿌리; //말뿌리
+	this.밑 = 밑; //말밑
 };
 
 const 다듬은말 = function(늘들온말, 늘낱말) {
@@ -24,17 +27,33 @@ const 다듬은말 = function(늘들온말, 늘낱말) {
 }
 
 const 들온말읽기 = function(글) {
-	return new 들온말(0, 글);
+	만든것 = new 들온말();
+	const 앞작도림 = 글.몇째칸('('), 뒷작도림 = 글.몇째칸(')');
+	if(앞작도림 != -1) {
+		만든것.밑 = 글.잘라내기(앞작도림 + 1, 뒷작도림)
+		글 = 글.작은줄(0, 앞작도림) + 글.작은줄(뒷작도림 + 1, 글.length);
+	}
+	const 앞큰도림 = 글.몇째칸('['), 뒷큰도림 = 글.몇째칸(']');
+	if(앞큰도림 != -1) {
+		만든것.바꿈꼴 = 글.잘라내기(앞큰도림 + 1, 뒷큰도림).가르기(',');
+		글 = 글.작은줄(0, 앞큰도림) + 글.작은줄(뒷큰도림 + 1, 글.length);
+	}
+	const 별 = 글.몇째칸('*');
+	if(별 != -1) {
+		만든것.붙임 = 글.잘라내기(별 + 1, 글.length);
+		글 = 글.작은줄(0, 별);
+	}
+	만든것.말 = 글;
+	return 만든것;
 };
 
 const 맨말읽기 = function(글) {
-	//글 = 글.replace(/ *\[(^])*\] */g, "")
 	return new 낱말(0, 글, null, null);
 };
 
 const 말읽기 = function(안글, 읽는수) {
 	안글 = 안글.가르기('/');
-	return 안글.타기(읽는수);
+	return 안글.태우기(읽는수);
 }
 
 const 줄읽기 = function(줄) {
