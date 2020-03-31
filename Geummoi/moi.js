@@ -5,7 +5,6 @@ String.prototype.가르기 = String.prototype.split;
 String.prototype.몇째칸 = String.prototype.indexOf;
 String.prototype.잘라내기 = String.prototype.slice;
 String.prototype.작은줄 = String.prototype.substring;
-console.쓰기 = console.log;
 ajaxRequester.가져오기 = ajaxRequester.request;
 ajaxRequester.가르기 = ajaxRequester.getTokensFrom;
 const 안고치손 = ajaxRequester; //안 고치고 가져오(AJAX)는 손
@@ -73,7 +72,6 @@ const 말모이읽기 = function(되부름) {
 const 말모이찾기 = function(말모이, 찾을말) {
 	const 만든것 = [];
 	말모이.하나하나(function(다듬하나) {
-		count++;
 		for(var ㅏ = 0;ㅏ < 다듬하나.늘들온말.length;ㅏ++) {
 			if(다듬하나.늘들온말[ㅏ].말.몇째칸(찾을말) != -1) {
 				만든것.넣기(다듬하나);
