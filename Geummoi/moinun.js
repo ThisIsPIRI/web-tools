@@ -1,6 +1,15 @@
+String.prototype.빈칸깎기 = String.prototype.trim;
+document.바가름로찾기 = document.getElementById;
+const 누리쪽 = document;
+EventTarget.prototype.귀더하기 = EventTarget.prototype.addEventListener;
+
 var 말모이;
-const 보여주는곳 = document.getElementById("보여주는곳");
-const 찾을말치 = document.getElementById("찾을말치");
+const 보여주는곳 = 누리쪽.바가름로찾기("보여주는곳");
+const 찾을말치 = 누리쪽.바가름로찾기("찾을말치");
+찾을말치.귀더하기("keydown", function(일어남) {
+	if(일어남.key == "Enter")
+		찾아보여주기(찾을말치.value);
+});
 
 const 낱말모습만들기 = function(보여줄말) {
 	var 만든것 = `<span class="말">${보여줄말.말}</span>`;
@@ -34,6 +43,7 @@ const 다듬모습만들기 = function(보여줄말) {
  @param 찾을말 {String} - 찾을 말*/
 const 찾아보여주기 = function(찾을말) {
 	var 만든것 = '';
+	찾을말 = 찾을말.빈칸깎기();
 	말모이서찾기(말모이, 찾을말).하나하나(function(찾은말) {
 		만든것 += 다듬모습만들기(찾은말);
 	});

@@ -5,6 +5,7 @@ String.prototype.가르기 = String.prototype.split;
 String.prototype.몇째칸 = String.prototype.indexOf;
 String.prototype.잘라내기 = String.prototype.slice;
 String.prototype.작은줄 = String.prototype.substring;
+String.prototype.바꿔치기 = String.prototype.replace;
 ajaxRequester.가져오기 = ajaxRequester.request;
 ajaxRequester.가르기 = ajaxRequester.getTokensFrom;
 const 안고치손 = ajaxRequester; //안 고치고 가져오(AJAX)는 손
@@ -48,6 +49,9 @@ const 말읽기 = function(안글) {
 
 const 줄읽기 = function(줄) {
 	줄 = 줄.가르기(' ');
+	줄 = 줄.태우기(function(마디) {
+		return 마디.바꿔치기(/_/g, ' ');
+	});
 	return new 다듬은말(0, 말읽기(줄[0]), 말읽기(줄[1]));
 };
 
