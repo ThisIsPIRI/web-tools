@@ -1,12 +1,14 @@
+"use strict";
+
 Array.prototype.넣기 = Array.prototype.push;
 Array.prototype.하나하나 = Array.prototype.forEach;
 Array.prototype.태우기 = Array.prototype.map;
+Array.prototype.덧붙이기 = Array.prototype.concat;
 String.prototype.가르기 = String.prototype.split;
 String.prototype.몇째칸 = String.prototype.indexOf;
 String.prototype.잘라내기 = String.prototype.slice;
 String.prototype.작은줄 = String.prototype.substring;
 String.prototype.바꿔치기 = String.prototype.replace;
-ajaxRequester.가져오기 = ajaxRequester.request;
 ajaxRequester.가르기 = ajaxRequester.getTokensFrom;
 const 안고치손 = ajaxRequester; //안 고치고 가져오(AJAX)는 손
 
@@ -26,7 +28,7 @@ const 다듬은말 = function(몇째, 늘들온말, 늘맨말) {
 const 말읽기 = function(안글) {
 	안글 = 안글.가르기('/');
 	return 안글.태우기(function(글) {
-		만든것 = new 낱말();
+		const 만든것 = new 낱말();
 		const 앞작도림 = 글.몇째칸('('), 뒷작도림 = 글.몇째칸(')');
 		if(앞작도림 != -1) {
 			만든것.밑 = 글.잘라내기(앞작도림 + 1, 뒷작도림)
@@ -55,22 +57,20 @@ const 줄읽기 = function(줄) {
 	return new 다듬은말(0, 말읽기(줄[0]), 말읽기(줄[1]));
 };
 
-const 말모이읽기 = function(되부름) {
-	안고치손.가져오기("manuri.malmoi", function(안글) {
-		const 늘낱말 = [];
-		const 늘줄 = 안고치손.가르기(안글, null, '\n');
-		늘줄.하나하나(function(줄) {
-			if(줄[0] === '#')
-				return;
-			else if(줄[0] === '*')
-				return; //TODO: footnote parsing
-			else if(줄 === '')
-				return; //TODO: parse sections?
-			else
-				늘낱말.넣기(줄읽기(줄));
-		});
-		되부름(늘낱말);
+const 말모이아롬읽기 = function(안글) {
+	const 늘낱말 = [];
+	const 늘줄 = 안고치손.가르기(안글, null, '\n');
+	늘줄.하나하나(function(줄) {
+		if(줄[0] === '#')
+			return;
+		else if(줄[0] === '*')
+			return; //TODO: footnote parsing
+		else if(줄 === '')
+			return; //TODO: parse sections?
+		else
+			늘낱말.넣기(줄읽기(줄));
 	});
+	return 늘낱말;
 };
 
 /**늘낱말 안에 찾을말이 들어 있는 낱말이 있는지 찾습니다.
@@ -114,5 +114,5 @@ const 말모이서찾기 = function(말모이, 찾을말) {
 			늘만든것[찾았나].넣기(다듬하나);
 		}
 	});
-	return 모두맞는것.concat(조금맞는것);
+	return 모두맞는것.덧붙이기(조금맞는것);
 };

@@ -1,7 +1,10 @@
+"use strict";
+
 String.prototype.빈칸깎기 = String.prototype.trim;
 document.바가름로찾기 = document.getElementById;
 const 누리쪽 = document;
 EventTarget.prototype.귀더하기 = EventTarget.prototype.addEventListener;
+ajaxRequester.가져오기 = ajaxRequester.request;
 
 var 말모이;
 const 보여주는곳 = 누리쪽.바가름로찾기("보여주는곳");
@@ -58,6 +61,6 @@ const 찾아보여주기 = function(찾을말) {
 	보여주는곳.innerHTML = 만든것;
 };
 
-말모이읽기(function(만든것) {
-	말모이 = 만든것;
+안고치손.가져오기("manuri.malmoi", function(만든것) {
+	말모이 = 말모이아롬읽기(만든것);
 });
