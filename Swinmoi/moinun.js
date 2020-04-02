@@ -62,8 +62,8 @@ const 찾아보여주기 = function(찾을말) {
 	보여주는곳.innerHTML = 만든것;
 };
 
-안고치손.가져오기("manuri.malmoi", function(읽은모이) {
-	안고치손.가져오기("manuri.malmoi.butim", function(읽은붙임) {
+안고치손.가져오기("manuri.swin", function(읽은모이) {
+	안고치손.가져오기("manuri.swint", function(읽은붙임) {
 		말모이 = 말모이아롬읽기(읽은모이, 붙임읽기(읽은붙임));
 	});
 });
