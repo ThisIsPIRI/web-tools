@@ -4,6 +4,7 @@ Array.prototype.넣기 = Array.prototype.push;
 Array.prototype.하나하나 = Array.prototype.forEach;
 Array.prototype.태우기 = Array.prototype.map;
 Array.prototype.덧붙이기 = Array.prototype.concat;
+Array.prototype.잘라내기 = Array.prototype.slice;
 String.prototype.가르기 = String.prototype.split;
 String.prototype.몇째칸 = String.prototype.indexOf;
 String.prototype.잘라내기 = String.prototype.slice;
@@ -61,16 +62,23 @@ const 줄읽기 = function(줄) {
 
 const 붙임읽기 = function(안글) {
 	const 몬붙임 = {};
-	var 몇째 = -1;
+	var 몇째;
 	안고치손.가르기(안글, null, '\n').하나하나(function(줄) {
 		if(줄[0] === '#') {
-			몇째 = 온셈이얻기(줄.가르기(' ')[1]);
-			몬붙임[몇째] = [];
+			몇째 = 줄.가르기(' ');
+			몇째 = 몇째.잘라내기(1, 몇째.length);
+			몇째.하나하나(function(째) {
+				if(!몬붙임[째])
+					몬붙임[째] = [];
+			});
 		}
 		else if(줄 === '')
 			return;
-		else
-			몬붙임[몇째].넣기(줄);
+		else {
+			몇째.하나하나(function(째) {
+				몬붙임[째].넣기(줄);
+			});
+		}
 	});
 	return 몬붙임;
 };
