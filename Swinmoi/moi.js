@@ -14,11 +14,10 @@ ajaxRequester.가르기 = ajaxRequester.getTokensFrom;
 const 안고치손 = ajaxRequester; //안 고치고 가져오(AJAX)는 손
 window.온셈이얻기 = window.parseInt;
 
-const 낱말 = function(말, 바꿈꼴, 밑, 붙임) {
+const 낱말 = function(말, 바꿈꼴, 밑) {
 	this.말 = 말; //낱말 글씨줄(문자열)
 	this.바꿈꼴 = 바꿈꼴; //바꿈꼴, 사투리 글씨줄 늘넣이(배열)
 	this.밑 = 밑; //말밑
-	this.붙임 = 붙임; //아랫붙임(주)
 };
 
 const 다듬은말 = function(몇째, 늘들온말, 늘맨말, 붙임) {
@@ -41,11 +40,6 @@ const 말읽기 = function(안글) {
 		if(앞큰도림 != -1) {
 			만든것.바꿈꼴 = 글.잘라내기(앞큰도림 + 1, 뒷큰도림).가르기(',');
 			글 = 글.작은줄(0, 앞큰도림) + 글.작은줄(뒷큰도림 + 1, 글.length);
-		}
-		const 별 = 글.몇째칸('*');
-		if(별 != -1) {
-			만든것.붙임 = 글.잘라내기(별 + 1, 글.length);
-			글 = 글.작은줄(0, 별);
 		}
 		만든것.말 = 글;
 		return 만든것;
@@ -87,10 +81,8 @@ const 말모이아롬읽기 = function(안글, 몬붙임) {
 	const 늘낱말 = [];
 	const 늘줄 = 안고치손.가르기(안글, null, '\n');
 	늘줄.하나하나(function(줄) {
-		if(줄[0] === '#')
+		if(줄[0] === '#' || 줄[0] === '*')
 			return;
-		else if(줄[0] === '*')
-			return; //TODO: footnote parsing
 		else if(줄 === '')
 			return; //TODO: parse sections?
 		else {

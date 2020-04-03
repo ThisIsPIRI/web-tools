@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-with open("manuri.malmoia") as rf:
+
+#argv[1]의 낱말이 있는 모든 줄 앞에 몇째를 붙이고 argv[2]에 씀
+
+from sys import argv
+
+with open(argv[1]) as rf:
 	lines = rf.readlines()
-with open("manuri.malmoi", 'w') as wf:
+with open(argv[2], 'w') as wf:
 	count = 0
 	for l in lines:
 		if not(l[0] == '#' or l[0] == '*' or l[0] == '\n'):
