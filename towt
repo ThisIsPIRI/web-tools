@@ -1,0 +1,12 @@
+#!/bin/bash
+cd ..
+rsync -avr web-tools/ "$1"/wt --exclude .git --exclude index.html --exclude readme.md --exclude towt
+cd "$1"/wt
+git apply linkindex.patch
+mv RandomMath rm
+mv Swinmoi sm
+mv Timer tm
+mv rm/RandomMath.html rm/index.html
+mv sm/Swinmoi.html sm/index.html
+mv tm/Timer_Korean.html tm/index.html
+rm linkindex.patch
