@@ -1,10 +1,10 @@
 "use strict";
 
-String.prototype.빈칸깎기 = String.prototype.trim;
 document.바가름로찾기 = document.getElementById;
 const 누리쪽 = document;
 EventTarget.prototype.귀더하기 = EventTarget.prototype.addEventListener;
 ajaxRequester.가져오기 = ajaxRequester.request;
+const 안고치손 = ajaxRequester; //안 고치고 가져오(AJAX)는 손
 
 var 말모이;
 const 보여주는곳 = 누리쪽.바가름로찾기("보여주는곳");
@@ -63,7 +63,5 @@ const 찾아보여주기 = function(찾을말) {
 };
 
 안고치손.가져오기("manuri.swin", function(읽은모이) {
-	안고치손.가져오기("manuri.swint", function(읽은붙임) {
-		말모이 = 말모이아롬읽기(읽은모이, 붙임읽기(읽은붙임));
-	});
+	말모이 = 말모이아롬읽기(읽은모이);
 });

@@ -10,8 +10,7 @@ String.prototype.몇째칸 = String.prototype.indexOf;
 String.prototype.잘라내기 = String.prototype.slice;
 String.prototype.작은줄 = String.prototype.substring;
 String.prototype.바꿔치기 = String.prototype.replace;
-ajaxRequester.가르기 = ajaxRequester.getTokensFrom;
-const 안고치손 = ajaxRequester; //안 고치고 가져오(AJAX)는 손
+String.prototype.빈칸깎기 = String.prototype.trim;
 window.온셈이얻기 = window.parseInt;
 
 const 낱말 = function(말, 바꿈꼴, 밑) {
@@ -26,6 +25,12 @@ const 다듬은말 = function(몇째, 늘들온말, 늘맨말, 붙임) {
 	this.늘맨말 = 늘맨말; //낱말 늘넣이
 	this.붙임 = 붙임; //보기, 더하는말 따위
 };
+
+const 가르고깎기 = function(글씨줄, 가를곳) {
+	return 글씨줄.가르기(가를곳).태우기(function(갈린글) {
+		return 갈린글.빈칸깎기();
+	});
+}
 
 const 말읽기 = function(안글) {
 	안글 = 안글.가르기('/');
@@ -57,7 +62,7 @@ const 줄읽기 = function(줄) {
 const 붙임읽기 = function(안글) {
 	const 몬붙임 = {};
 	var 몇째;
-	안고치손.가르기(안글, null, '\n').하나하나(function(줄) {
+	가르고깎기(안글, '\n').하나하나(function(줄) {
 		if(줄[0] === '#') {
 			몇째 = 줄.가르기(' ');
 			몇째 = 몇째.잘라내기(1, 몇째.length);
@@ -77,14 +82,14 @@ const 붙임읽기 = function(안글) {
 	return 몬붙임;
 };
 
-const 말모이아롬읽기 = function(안글, 몬붙임) {
+const 말모이아롬읽기 = function(안글) {
+	안글 = 안글.가르기("++++++보기와 붙임++++++\n");
+	const 몬붙임 = 붙임읽기(안글[1]);
 	const 늘낱말 = [];
-	const 늘줄 = 안고치손.가르기(안글, null, '\n');
+	const 늘줄 = 가르고깎기(안글[0], '\n');
 	늘줄.하나하나(function(줄) {
-		if(줄[0] === '#' || 줄[0] === '*')
+		if(줄 === '' || 줄[0] === '#' || 줄[0] === '*')
 			return;
-		else if(줄 === '')
-			return; //TODO: parse sections?
 		else {
 			const 읽은줄 = 줄읽기(줄);
 			if(몬붙임[읽은줄.몇째])
