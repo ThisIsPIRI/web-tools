@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+
+#쉰모이 아롬(파일)의 째매김(번호)들이 오름늘옴(순서)이 되도록 다시매김(재할당)
+
+mapping = {}
+
+def makeswin(origswin):
+	global mapping
+	newswin = ""
+	counter = 1
+	for l in origswin:
+		if l[0] == '\n' or l[0] == '#':
+			newswin += l
+			continue
+		splitted = l.split()
+		headnum = int(splitted[0])
+		if headnum in mapping:
+			print(f"duplicate found: {headnum}")
+		mapping[headnum] = counter
+		splitted[0] = str(counter)
+		newswin += ' '.join(splitted) + '\n'
+		counter += 1
+	return newswin
+
+def makeswint(origswint):
+	global mapping
+	newswint = ""
+	for l in origswint:
+		if l[0] == '#':
+			splitted = [str(mapping[int(n)]) for n in l.split()[1:]]
+			newswint += ' '.join(['#'] + splitted) + '\n'
+		else:
+			newswint += l
+	return newswint
+
+with open("manuri.swin") as swin:
+	lines = swin.readlines()
+	separator = lines.index("++++++보기와 붙임++++++\n")
+	lines = (lines[0:separator], lines[separator:len(lines)])
+
+newswin = makeswin(lines[0])
+newswint = makeswint(lines[1])
+
+with open("manuri.swin.new", 'w') as newswinfile:
+	newswinfile.write(newswin + newswint)
