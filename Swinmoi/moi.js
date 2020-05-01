@@ -6,11 +6,11 @@ Array.prototype.태우기 = Array.prototype.map;
 Array.prototype.덧붙이기 = Array.prototype.concat;
 Array.prototype.잘라내기 = Array.prototype.slice;
 String.prototype.가르기 = String.prototype.split;
-String.prototype.몇째칸 = String.prototype.indexOf;
+String.prototype.몇째 = String.prototype.indexOf;
 String.prototype.잘라내기 = String.prototype.slice;
 String.prototype.작은줄 = String.prototype.substring;
 String.prototype.바꿔치기 = String.prototype.replace;
-String.prototype.빈칸깎기 = String.prototype.trim;
+String.prototype.빈곳깎기 = String.prototype.trim;
 window.온셈이얻기 = window.parseInt;
 
 const 낱말 = function(말, 바꿈꼴, 밑) {
@@ -28,7 +28,7 @@ const 다듬은말 = function(몇째, 늘들온말, 늘맨말, 붙임) {
 
 const 가르고깎기 = function(글씨줄, 가를곳) {
 	return 글씨줄.가르기(가를곳).태우기(function(갈린글) {
-		return 갈린글.빈칸깎기();
+		return 갈린글.빈곳깎기();
 	});
 }
 
@@ -36,12 +36,12 @@ const 말읽기 = function(안글) {
 	안글 = 안글.가르기('/');
 	return 안글.태우기(function(글) {
 		const 만든것 = new 낱말();
-		const 앞작도림 = 글.몇째칸('('), 뒷작도림 = 글.몇째칸(')');
+		const 앞작도림 = 글.몇째('('), 뒷작도림 = 글.몇째(')');
 		if(앞작도림 != -1) {
 			만든것.밑 = 글.잘라내기(앞작도림 + 1, 뒷작도림)
 			글 = 글.작은줄(0, 앞작도림) + 글.작은줄(뒷작도림 + 1, 글.length);
 		}
-		const 앞큰도림 = 글.몇째칸('['), 뒷큰도림 = 글.몇째칸(']');
+		const 앞큰도림 = 글.몇째('['), 뒷큰도림 = 글.몇째(']');
 		if(앞큰도림 != -1) {
 			만든것.바꿈꼴 = 글.잘라내기(앞큰도림 + 1, 뒷큰도림).가르기(',');
 			글 = 글.작은줄(0, 앞큰도림) + 글.작은줄(뒷큰도림 + 1, 글.length);
@@ -108,13 +108,13 @@ const 늘낱말서찾기 = function(늘낱말, 찾을말) {
 	for(var ㅏ = 0;ㅏ < 늘낱말.length;ㅏ++) {
 		if(늘낱말[ㅏ].말 === 찾을말)
 			return 1;
-		else if(늘낱말[ㅏ].말.몇째칸(찾을말) != -1)
+		else if(늘낱말[ㅏ].말.몇째(찾을말) != -1)
 			return 0;
 		else if(늘낱말[ㅏ].바꿈꼴) {
 			for(var ㅑ = 0;ㅑ < 늘낱말[ㅏ].바꿈꼴.length;ㅑ++) {
 				if(늘낱말[ㅏ].바꿈꼴[ㅑ] === 찾을말)
 					return 1;
-				else if(늘낱말[ㅏ].바꿈꼴[ㅑ].몇째칸(찾을말) != -1)
+				else if(늘낱말[ㅏ].바꿈꼴[ㅑ].몇째(찾을말) != -1)
 					return 0;
 			}
 		}
