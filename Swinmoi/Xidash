@@ -2,6 +2,8 @@
 
 #쉰모이 아롬(파일)의 째매김(번호)들이 오름늘옴(순서)이 되도록 다시매김(재할당)
 
+from sys import argv
+
 mapping = {}
 
 def makeswin(origswin):
@@ -33,7 +35,7 @@ def makeswint(origswint):
 			newswint += l
 	return newswint
 
-with open("manuri.swin") as swin:
+with open(argv[1]) as swin:
 	lines = swin.readlines()
 	separator = lines.index("++++++보기와 붙임++++++\n")
 	lines = (lines[0:separator], lines[separator:len(lines)])
@@ -41,5 +43,5 @@ with open("manuri.swin") as swin:
 newswin = makeswin(lines[0])
 newswint = makeswint(lines[1])
 
-with open("manuri.swin.new", 'w') as newswinfile:
+with open(argv[2], 'w') as newswinfile:
 	newswinfile.write(newswin + newswint)
