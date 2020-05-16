@@ -2,19 +2,11 @@
 
 document.바가름로찾기 = document.getElementById;
 const 누리쪽 = document;
+const 누리봄 = window;
 EventTarget.prototype.귀더하기 = EventTarget.prototype.addEventListener;
 ajaxRequester.가져오기 = ajaxRequester.request;
+ajaxRequester.다가져오기 = ajaxRequester.requestAll;
 const 안고치손 = ajaxRequester; //안 고치고 가져오(AJAX)는 손
-
-var 흔한모이, 안흔모이, 엮맞모이;
-const 보여주는곳 = 누리쪽.바가름로찾기("보여주는곳");
-const 찾을말치 = 누리쪽.바가름로찾기("찾을말치");
-const 안흔찾기 = 누리쪽.바가름로찾기("안흔찾기");
-const 엮맞찾기 = 누리쪽.바가름로찾기("엮맞찾기");
-찾을말치.귀더하기("keydown", function(일어남) {
-	if(일어남.key == "Enter")
-		찾아보여주기(찾을말치.value);
-});
 
 const 낱말모습만들기 = function(보여줄말) {
 	var 만든것 = `<span class="말">${보여줄말.말}</span>`;
@@ -71,14 +63,26 @@ const 찾아보여주기 = function(찾을말) {
 	보여주는곳.innerHTML = 만든것;
 };
 
-//할것: 안고치를 한대에 모두 쏘도록
-안고치손.가져오기("manuri.swin", function(읽은모이) {
-	흔한모이 = 말모이아롬읽기(읽은모이);
-	안고치손.가져오기("anhen.swin", function(읽은안흔모이) {
-		안흔모이 = 말모이아롬읽기(읽은안흔모이);
-		안고치손.가져오기("yemat.swin", function(읽은엮맞모이) {
-			엮맞모이 = 말모이아롬읽기(읽은엮맞모이);
-			보여주는곳.innerHTML = "";
-		});
-	});
+var 흔한모이, 안흔모이, 엮맞모이;
+var 얼마나갖 = 0;
+const 보여주는곳 = 누리쪽.바가름로찾기("보여주는곳");
+const 찾을말치 = 누리쪽.바가름로찾기("찾을말치");
+const 안흔찾기 = 누리쪽.바가름로찾기("안흔찾기");
+const 엮맞찾기 = 누리쪽.바가름로찾기("엮맞찾기");
+const 아로밀서모일로 = {
+	"manuri.swin": "흔한모이",
+	"anhen.swin": "안흔모이",
+	"yemat.swin": "엮맞모이"
+};
+
+찾을말치.귀더하기("keydown", function(일어남) {
+	if(일어남.key == "Enter")
+		찾아보여주기(찾을말치.value);
+});
+
+안고치손.다가져오기(["manuri.swin", "anhen.swin", "yemat.swin"], function(읽은모이, 아로밀) {
+	누리봄[아로밀서모일로[아로밀]] = 말모이아롬읽기(읽은모이);
+	얼마나갖 += 1;
+	if(얼마나갖 >= 3)
+		보여주는곳.innerHTML = "";
 });
