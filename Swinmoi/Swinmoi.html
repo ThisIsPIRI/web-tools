@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<input id="찾을말치" type="text" autofocus>
-		<button id="찾기단추" onclick="찾아보여주기(찾을말치.value);">찾기</button>
+		<button id="찾기단추" onclick="친말로찾기();">찾기</button>
 		<label><input id="안흔찾기" type="checkbox" checked>안 흔한 말</label>
 		<label><input id="엮맞찾기" type="checkbox">엮은이가 맞춘말</label>
 		<div id="보여주는곳">
@@ -17,6 +17,7 @@
 			(이 누리쪽은 자바스크립트가 없으면 돌아가지 않습니다. 자바스크립트를 켜기 싫다면 아래 아롬을 받아 주세요) <br>
 			(이 글이 사라지지 않으면 누리쪽을 새로고쳐 보세요)
 		</div>
+		<label><input id="찾은말적어놓기" type="checkbox" checked>(뒤로가기 누르면 아까 찾은 말이 나오도록)찾은 말 적어놓기</label>
 		<footer>
 			말모이 <a href="manuri.swin">아롬(파일) 하나</a> <a href="anhen.swin">아롬 둘</a> <a href="yemat.swin">아롬 셋</a> <br>
 			화살 오른쪽 다듬은말은 모두 맨우리말이며 한자, 깊들온말(귀화어), 들온말은 하나도 없습니다. 있는데 풀이가 붙어 있지 않으면 잘못 들어간 것이니 알려주세요.

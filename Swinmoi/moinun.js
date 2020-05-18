@@ -7,7 +7,6 @@ EventTarget.prototype.귀더하기 = EventTarget.prototype.addEventListener;
 URLSearchParams.prototype.있나 = URLSearchParams.prototype.has;
 URLSearchParams.prototype.얻기 = URLSearchParams.prototype.get;
 const 찾넘김읽개 = URLSearchParams;
-ajaxRequester.가져오기 = ajaxRequester.request;
 ajaxRequester.다가져오기 = ajaxRequester.requestAll;
 const 안고치손 = ajaxRequester; //안 고치고 가져오(AJAX)는 손
 
@@ -66,12 +65,30 @@ const 찾아보여주기 = function(찾을말) {
 	보여주는곳.innerHTML = 만든것;
 };
 
+//단추나 줄바꿈 누를 때
+const 친말로찾기 = function() {
+	const 찾을말 = 찾을말치.value;
+	찾아보여주기(찾을말);
+	if(찾은말적어놓기.checked)
+		누리봄.history.pushState(null, null, 누리봄.location.pathname + `?q=${찾을말}`);
+};
+
+//새로 들어오거나 뒤로/앞으로 누를 때
+const 찾넘김로찾기 = function() {
+	const 찾넘김들 = new 찾넘김읽개(누리봄.location.search);
+	if(찾넘김들.있나('q')) {
+		찾을말치.value = 찾넘김들.얻기('q');
+		찾아보여주기(찾넘김들.얻기('q'));
+	}
+}
+
 var 흔한모이, 안흔모이, 엮맞모이;
 var 얼마나갖 = 0;
 const 보여주는곳 = 누리쪽.바가름로찾기("보여주는곳");
 const 찾을말치 = 누리쪽.바가름로찾기("찾을말치");
 const 안흔찾기 = 누리쪽.바가름로찾기("안흔찾기");
 const 엮맞찾기 = 누리쪽.바가름로찾기("엮맞찾기");
+const 찾은말적어놓기 = 누리쪽.바가름로찾기("찾은말적어놓기");
 const 아로밀서모일로 = {
 	"manuri.swin": "흔한모이",
 	"anhen.swin": "안흔모이",
@@ -80,18 +97,15 @@ const 아로밀서모일로 = {
 
 찾을말치.귀더하기("keydown", function(일어남) {
 	if(일어남.key == "Enter")
-		찾아보여주기(찾을말치.value);
+		친말로찾기();
 });
+누리봄.onpopstate = 찾넘김로찾기;
 
 안고치손.다가져오기(["manuri.swin", "anhen.swin", "yemat.swin"], function(읽은모이, 아로밀) {
 	누리봄[아로밀서모일로[아로밀]] = 말모이아롬읽기(읽은모이);
 	얼마나갖 += 1;
 	if(얼마나갖 >= 3) {
 		보여주는곳.innerHTML = "";
-		const 찾넘김들 = new 찾넘김읽개(누리봄.location.search);
-		if(찾넘김들.있나('q')) {
-			찾을말치.value = 찾넘김들.얻기('q');
-			찾아보여주기(찾넘김들.얻기('q'));
-		}
+		찾넘김로찾기();
 	}
 });
