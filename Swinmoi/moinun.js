@@ -4,6 +4,9 @@ document.바가름로찾기 = document.getElementById;
 const 누리쪽 = document;
 const 누리봄 = window;
 EventTarget.prototype.귀더하기 = EventTarget.prototype.addEventListener;
+URLSearchParams.prototype.있나 = URLSearchParams.prototype.has;
+URLSearchParams.prototype.얻기 = URLSearchParams.prototype.get;
+const 찾넘김읽개 = URLSearchParams;
 ajaxRequester.가져오기 = ajaxRequester.request;
 ajaxRequester.다가져오기 = ajaxRequester.requestAll;
 const 안고치손 = ajaxRequester; //안 고치고 가져오(AJAX)는 손
@@ -53,9 +56,9 @@ const 찾아보여주기 = function(찾을말) {
 		if(찾을말끝 === "하다" || 찾을말끝 === "되다")
 			늘찾은말 = 말모이서찾기(찾을모이, 찾을말.작은줄(0, 찾을말.length - 2));
 		if(늘찾은말.length === 0)
-			만든것 = "이 말은 우리 말모이에 없는 것 같습니다.<br>\
-			움직씨나 그림씨라면 -다 꼴로 찾아 보세요.<br>\
-			'안 흔한 말' '엮은이가 맞춘말'을 켜 보세요.";
+			만든것 = `'${찾을말}'은 우리 말모이에 없는 것 같습니다.<br>
+			움직씨나 그림씨라면 -다 꼴로 찾아 보세요.<br>
+			'안 흔한 말' '엮은이가 맞춘말'을 켜 보세요.`;
 	}
 	늘찾은말.하나하나(function(찾은말) {
 		만든것 += 다듬모습만들기(찾은말);
@@ -83,6 +86,12 @@ const 아로밀서모일로 = {
 안고치손.다가져오기(["manuri.swin", "anhen.swin", "yemat.swin"], function(읽은모이, 아로밀) {
 	누리봄[아로밀서모일로[아로밀]] = 말모이아롬읽기(읽은모이);
 	얼마나갖 += 1;
-	if(얼마나갖 >= 3)
+	if(얼마나갖 >= 3) {
 		보여주는곳.innerHTML = "";
+		const 찾넘김들 = new 찾넘김읽개(누리봄.location.search);
+		if(찾넘김들.있나('q')) {
+			찾을말치.value = 찾넘김들.얻기('q');
+			찾아보여주기(찾넘김들.얻기('q'));
+		}
+	}
 });
