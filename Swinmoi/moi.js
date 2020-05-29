@@ -11,6 +11,8 @@ String.prototype.잘라내기 = String.prototype.slice;
 String.prototype.작은줄 = String.prototype.substring;
 String.prototype.바꿔치기 = String.prototype.replace;
 String.prototype.빈곳깎기 = String.prototype.trim;
+Math.큰것 = Math.max;
+const 셈본 = Math;
 window.온셀얻기 = window.parseInt;
 
 const 낱말 = function(말, 바꿈꼴, 밑) {
@@ -100,26 +102,29 @@ const 말모이아롬읽기 = function(안글) {
 	return 늘낱말;
 };
 
+const 글씨줄서찾기 = function(줄, 찾을말) {
+	if(줄 === 찾을말)
+		 return 1;
+	else if(줄.몇째(찾을말) != -1)
+		return 0;
+	else return -1;
+};
+
 /**늘낱말 안에 찾을말이 들어 있는 낱말이 있는지 찾습니다.
  * @param 늘낱말 {늘넣이} - 늘낱말
  * @param 찾을말 {글씨줄} - 찾을 말
  * @returns {온셀} 없으면 -1, 모두 맞는 낱말이 있으면 1, 조금 맞는 낱말이 있으면 0*/
 const 늘낱말서찾기 = function(늘낱말, 찾을말) {
+	var 찾았나 = -1;
 	for(var ㅏ = 0;ㅏ < 늘낱말.length;ㅏ++) {
-		if(늘낱말[ㅏ].말 === 찾을말)
-			return 1;
-		else if(늘낱말[ㅏ].말.몇째(찾을말) != -1)
-			return 0;
-		else if(늘낱말[ㅏ].바꿈꼴) {
+		찾았나 = 셈본.큰것(찾았나, 글씨줄서찾기(늘낱말[ㅏ].말, 찾을말));
+		if(늘낱말[ㅏ].바꿈꼴) {
 			for(var ㅑ = 0;ㅑ < 늘낱말[ㅏ].바꿈꼴.length;ㅑ++) {
-				if(늘낱말[ㅏ].바꿈꼴[ㅑ] === 찾을말)
-					return 1;
-				else if(늘낱말[ㅏ].바꿈꼴[ㅑ].몇째(찾을말) != -1)
-					return 0;
+				찾았나 = 셈본.큰것(찾았나, 글씨줄서찾기(늘낱말[ㅏ].바꿈꼴[ㅑ], 찾을말));
 			}
 		}
 	}
-	return -1;
+	return 찾았나;
 };
 
 //할것: 더 빠르게
@@ -133,12 +138,7 @@ const 말모이서찾기 = function(늘말모이, 찾을말) {
 	const 늘만든것 = [조금맞는것, 모두맞는것];
 	늘말모이.하나하나(function(말모이) {
 		말모이.하나하나(function(다듬하나) {
-			var 찾았나 = 늘낱말서찾기(다듬하나.늘들온말, 찾을말);
-			if(찾았나 >= 0) {
-				늘만든것[찾았나].넣기(다듬하나);
-				return;
-			}
-			찾았나 = 늘낱말서찾기(다듬하나.늘맨말, 찾을말);
+			var 찾았나 = 셈본.큰것(늘낱말서찾기(다듬하나.늘들온말, 찾을말), 늘낱말서찾기(다듬하나.늘맨말, 찾을말));
 			if(찾았나 >= 0) {
 				늘만든것[찾았나].넣기(다듬하나);
 			}
