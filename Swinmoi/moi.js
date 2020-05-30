@@ -13,7 +13,9 @@ String.prototype.바꿔치기 = String.prototype.replace;
 String.prototype.빈곳깎기 = String.prototype.trim;
 Math.큰것 = Math.max;
 const 셈본 = Math;
-window.온셀얻기 = window.parseInt;
+const 온셀얻기 = window.parseInt;
+const 참 = true;
+const 거짓 = false;
 
 const 낱말 = function(말, 바꿈꼴, 밑) {
 	this.말 = 말; //낱말 글씨줄(문자열)
@@ -131,8 +133,9 @@ const 늘낱말서찾기 = function(늘낱말, 찾을말) {
 /**말모이 안에 찾을말이 들어 있는 다듬은말을 모두 돌려줍니다.
  * @param 늘말모이 {늘넣이} - 늘늘다듬은말
  * @param 찾을말 {글씨줄} - 찾을 말
+ * @param 애쓰지말까 {참거짓} - 참이면 찾은 말이 없어도 말끝 '하다'와 '되다'를 지워 다시 찾지 않습니다.
  * @returns {늘넣이} 늘다듬은말. 모두 맞는 낱말이 있는 다듬은말이 앞쪽에 나옵니다.*/
-const 말모이서찾기 = function(늘말모이, 찾을말) {
+const 말모이서찾기 = function(늘말모이, 찾을말, 애쓰지말까) {
 	const 모두맞는것 = [];
 	const 조금맞는것 = [];
 	const 늘만든것 = [조금맞는것, 모두맞는것];
@@ -144,5 +147,11 @@ const 말모이서찾기 = function(늘말모이, 찾을말) {
 			}
 		});
 	});
-	return 모두맞는것.덧붙이기(조금맞는것);
+	var 만든것 = 모두맞는것.덧붙이기(조금맞는것);
+	if(!애쓰지말까 && 만든것.length === 0) {
+		const 찾을말끝 = 찾을말.작은줄(찾을말.length - 2, 찾을말.length);
+		if(찾을말끝 === "하다" || 찾을말끝 === "되다")
+			만든것 = 말모이서찾기(늘말모이, 찾을말.작은줄(0, 찾을말.length - 2), 참);
+	}
+	return 만든것;
 };
