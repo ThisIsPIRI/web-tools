@@ -2,7 +2,7 @@
 A simple timer.
 
 ## Dependencies
-Requires Timer.js from [my JS Library](https://github.com/ThisIsPIRI/js-library). Already included.
+Requires Timer.js and sound.js from [my JS Library](https://github.com/ThisIsPIRI/js-library). Already included.
 
 ## License
 ![CC BY-SA 3.0](https://i.creativecommons.org/l/by-sa/3.0/88x31.png)

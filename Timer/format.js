@@ -7,7 +7,7 @@ const format = function (number, showHour, showUnderOne) {
 	var minutes = Math.floor((secondSum - (hours * 3600)) / 60);
 	var seconds = secondSum - (hours * 3600) - (minutes * 60);
 	if(showUnderOne) seconds = seconds.toFixed(3);
-	
+
 	if (hours < 10) hours = '0' + hours;
 	if (minutes < 10) minutes = '0' + minutes;
 	if (seconds < 10) seconds = '0' + seconds;
