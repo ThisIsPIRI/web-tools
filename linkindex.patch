@@ -3,7 +3,7 @@ diff --git a/Timer/Timer_English.html b/Timer/Timer_English.html
 +++ b/Timer/Timer_English.html
 @@ -39,7 +39,7 @@
  		<footer>
- 			<span id="imageCredit">Image: Public domain</span>
+ 			<span id="imageCredit">Image: N/A</span>
  			<br>
 -			<a href="Timer_Korean.html">Korean version</a>
 +			<a href="index.html">Korean version</a>
