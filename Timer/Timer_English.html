@@ -15,6 +15,10 @@
 					<button onclick="timer.pause();">Pause</button>
 					<button onclick="timer.stop(false);">Stop</button>
 				</p>
+				<p id="modeButtons">
+					<label><input type="radio" name="moderadio" value="timer" onchange="timer.mode = Timer.Mode.TIMER;" checked>Timer mode</label>
+					<label><input type="radio" name="moderadio" value="stopwatch" onchange="timer.mode = Timer.Mode.STOPWATCH;">Stopwatch mode</label>
+				</p>
 				<p id="timeButtons">
 					<button onclick="timer.addTime(3600000);">1h</button>
 					<button onclick="timer.addTime(300000);">5m</button>

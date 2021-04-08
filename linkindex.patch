@@ -1,7 +1,7 @@
 diff --git a/Timer/Timer_English.html b/Timer/Timer_English.html
 --- a/Timer/Timer_English.html
 +++ b/Timer/Timer_English.html
-@@ -39,7 +39,7 @@
+@@ -43,7 +43,7 @@
  		<footer>
  			<span id="imageCredit">Image: N/A</span>
  			<br>

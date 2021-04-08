@@ -1,3 +1,5 @@
+"use strict";
+
 const changeVisibility = function(ofWhat) {
 	switch(ofWhat) {
 	case showHoursCheck:
@@ -40,3 +42,11 @@ customTitle.addEventListener("keydown", function(event) {
 //Update for potential cached values
 changeVisibility(showHoursCheck);
 changeVisibility(showUnderOneCheck);
+switch(document.querySelector("input[name='moderadio']:checked").value) {
+case "timer":
+	timer.mode = Timer.Mode.TIMER;
+	break;
+case "stopwatch":
+	timer.mode = Timer.Mode.STOPWATCH;
+	break;
+}

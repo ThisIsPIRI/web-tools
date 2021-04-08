@@ -1,5 +1,5 @@
 # PIRI Web Timer
-A simple timer. Requires AudioContext to be enabled(dom.webaudio.enabled in Firefox config) by default, but can easily be made to use an audio file instead by changing USEAUDIOFILE flag in timer.js.
+A simple timer and stopwatch. The timer mode requires AudioContext to be enabled(dom.webaudio.enabled in Firefox config) by default, but can easily be made to use an audio file instead by changing USEAUDIOFILE flag in timer.js.
 
 Note: if the last two microsecond digits never or rarely change on Firefox-based browsers, try setting privacy.resistFingerprinting config to false.
 

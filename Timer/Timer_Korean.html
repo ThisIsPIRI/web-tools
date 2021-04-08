@@ -14,6 +14,10 @@
 					<button onclick="timer.pause();">멈추기</button>
 					<button onclick="timer.stop(false);">지우기</button>
 				</p>
+				<p id="modeButtons">
+					<label><input type="radio" name="moderadio" value="timer" onchange="timer.mode = Timer.Mode.TIMER;" checked>내리제잼틀</label>
+					<label><input type="radio" name="moderadio" value="stopwatch" onchange="timer.mode = Timer.Mode.STOPWATCH;">올리제잼틀</label>
+				</p>
 				<p id="timeButtons">
 					<button onclick="timer.addTime(3600000);">1시간</button>
 					<button onclick="timer.addTime(300000);">5분</button>
