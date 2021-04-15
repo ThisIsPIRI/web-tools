@@ -1,6 +1,7 @@
 "use strict";
 
 document.바가름로찾기 = document.getElementById;
+document.걸러찾기 = document.querySelector;
 const 누리쪽 = document;
 History.prototype.간곳넣기 = History.prototype.pushState;
 window.발자취 = window.history;
@@ -68,16 +69,18 @@ const 찾아모습만들기 = function(찾을말) {
 		똑같은것만 = 참;
 		찾을말 = 찾을말.작은줄(0, 찾을말.length - 1).작은줄(1, 찾을말.length);
 	}
-	var 늘찾은말 = 말모이서찾기(찾을모이, 찾을말, 똑같은것만);
+	const 어디서찾 = 누리쪽.걸러찾기("input[name='어디서찾']:checked").value;
+	const 늘찾은말 = 말모이서찾기(찾을모이, 찾을말, 똑같은것만, 말모이서찾기[어디서찾]);
 	if(늘찾은말.length === 0) {
 		const 따옴 = 똑같은것만 ? '"' : '\'';
 		const 따옴떼고 = 똑같은것만 ? "큰따옴(\")을 떼고 찾아 보세요.<br>" : "";
+		const 모두서누르고 = 어디서찾 !== "모두서" ? "'모두서'를 누르고 찾아 보세요.<br>" : "";
+		const 모이켜고 = !안흔찾기.checked || !엮맞찾기.checked ? "'안 흔한 말' '엮은이가 맞춘말'을 켜 보세요.<br>" : "";
 		만든것 = `<p>${따옴}${찾을말}${따옴}은 우리 말모이에 없는 것 같습니다.<br>
-		${따옴떼고}
-		움직씨나 그림씨라면 -다 꼴로 찾아 보세요.<br>
-		'안 흔한 말' '엮은이가 맞춘말'을 켜 보세요.</p>`;
+		${따옴떼고} ${모두서누르고} ${모이켜고}
+		움직씨나 그림씨라면 -다 꼴로 찾아 보세요.</p>`;
 	}
-	늘찾은말.하나하나(function(찾은말) {
+	else 늘찾은말.하나하나(function(찾은말) {
 		만든것 += 다듬모습만들기(찾은말);
 	});
 	return 만든것;
@@ -99,7 +102,7 @@ const 찾넘김로찾기 = function() {
 		찾을말치.value = 찾을말;
 		보여주는곳.innerHTML = 찾아모습만들기(찾을말);
 	}
-}
+};
 
 var 흔한모이, 안흔모이, 엮맞모이;
 var 얼마나갖 = 0;

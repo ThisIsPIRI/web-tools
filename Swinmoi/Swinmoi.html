@@ -12,6 +12,9 @@
 		<button id="찾기단추" onclick="친말로찾기();">찾기</button>
 		<label><input id="안흔찾기" type="checkbox" checked>안 흔한 말</label>
 		<label><input id="엮맞찾기" type="checkbox" checked>엮은이가 맞춘말</label>
+		<label><input name="어디서찾" value="모두서" type="radio" checked>모두서</label>
+		<label><input name="어디서찾" value="들온말서만" type="radio">들온말서만</label>
+		<label><input name="어디서찾" value="맨말서만" type="radio">맨말서만</label>
 		<div id="보여주는곳">
 			말모이를 가져오고 있습니다. 조금만 기다리세요... <br>
 			(이 누리쪽은 자바스크립트가 없으면 돌아가지 않습니다. 자바스크립트를 켜기 싫다면 아래 아롬을 받아 주세요) <br>
@@ -20,7 +23,7 @@
 		<footer>
 			<label><input id="찾은말적어놓기" type="checkbox" checked>(뒤로가기 누르면 아까 찾은 말이 나오도록)찾은 말 적어놓기</label> <br>
 			말모이 <a href="manuri.swin">아롬(파일) 하나</a> <a href="anhen.swin">아롬 둘</a> <a href="yemat.swin">아롬 셋</a> <br>
-			화살 오른쪽 다듬은말은 모두 맨우리말이며 한자, 깊들온말(귀화어), 들온말은 하나도 없습니다. 있는데 풀이가 붙어 있지 않으면 잘못 들어간 것이니 알려주세요. <br>
+			화살 오른쪽 다듬은말은 모두 맨우리말이며 [] 안에 다듬은 보기로 실은 섞인말 몇을 빼면 한자, 깊들온말(귀화어), 들온말은 하나도 없습니다. <br>
 			움직씨와 그림씨 가운데 "하다", "되다"로 끝나면서 네글씨보다 긴 것은 "하다", "되다"를 쓰지 않았습니다.<br>
 			띄어썼을 때 읽기 쉬워지는 말이 아니면 굳이 띄어쓰지 않았습니다. <br>
 			쉼을 쓰면 여러 말을 함께 찾습니다. 보기: 함께,찾다 <br>
