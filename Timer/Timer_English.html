@@ -16,8 +16,9 @@
 					<button onclick="timer.stop(false);">Stop</button>
 				</p>
 				<p id="modeButtons">
-					<label><input type="radio" name="moderadio" value="timer" onchange="timer.mode = Timer.Mode.TIMER;" checked>Timer mode</label>
-					<label><input type="radio" name="moderadio" value="stopwatch" onchange="timer.mode = Timer.Mode.STOPWATCH;">Stopwatch mode</label>
+					<label><input type="radio" name="moderadio" value="timer" onchange="changeMode(Timer.Mode.TIMER);" checked>Timer mode</label>
+					<label><input type="radio" name="moderadio" value="stopwatch" onchange="changeMode(Timer.Mode.STOPWATCH);">Stopwatch mode</label>
+					<label><input type="radio" name="moderadio" value="clock" onchange="changeMode(Timer.Mode.CLOCK);">Clock mode</label>
 				</p>
 				<p id="timeButtons">
 					<button onclick="timer.addTime(3600000);">1h</button>
@@ -42,6 +43,8 @@
 		<button onclick="changeBackground();">Change background</button>
 		<footer>
 			<span id="imageCredit">Image: N/A</span>
+			<br>
+			<span id="disclaimer">This is based on time reported by your browser. It may not be accurate.</span>
 			<br>
 			<a href="Timer_Korean.html">Korean version</a>
 		</footer>

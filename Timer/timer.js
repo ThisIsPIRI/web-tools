@@ -23,6 +23,17 @@ const stopped = function(timeRanOut) {
 const changeTitle = function(toWhat) {
 	document.title = toWhat;
 }
+const changeMode = function(mode) {
+	timer.mode = mode;
+	if(mode === Timer.Mode.CLOCK) {
+		disclaimer.style.visibility = "visible";
+		timeButtons.style.visibility = "hidden";
+	}
+	else {
+		disclaimer.style.visibility = "hidden";
+		timeButtons.style.visibility = "visible";
+	}
+}
 
 const USEAUDIOFILE = false;
 const timeup = USEAUDIOFILE ? new Audio("sound/timeup.mp3") : new AudioContext();
@@ -32,6 +43,8 @@ const showHoursCheck = document.getElementById("showHoursCheck");
 const showUnderOneCheck = document.getElementById("showUnderOneCheck");
 const imageCredit = document.getElementById("imageCredit");
 const customTitle = document.getElementById("customTitle");
+const disclaimer = document.getElementById("disclaimer");
+const timeButtons = document.getElementById("timeButtons");
 const timer = new Timer(stopped, updateTime, format);
 
 customTitle.addEventListener("keydown", function(event) {
@@ -44,9 +57,9 @@ changeVisibility(showHoursCheck);
 changeVisibility(showUnderOneCheck);
 switch(document.querySelector("input[name='moderadio']:checked").value) {
 case "timer":
-	timer.mode = Timer.Mode.TIMER;
+	changeMode(Timer.Mode.TIMER);
 	break;
 case "stopwatch":
-	timer.mode = Timer.Mode.STOPWATCH;
+	changeMode(Timer.Mode.STOPWATCH);
 	break;
 }

@@ -22,11 +22,8 @@ const Timer = function(onstop, updateCallback, format, showH, showOne, mode) {
 	this.showOne = showOne;
 	this.mode = mode != undefined ? mode : Timer.Mode.TIMER;
 };
-Timer.prototype.getTimeString = function() {
-	return this.format(this.time, this.showH, this.showOne);
-};
 Timer.prototype.updateTimeString = function() {
-	this.updateCallback(this.getTimeString());
+	this.updateCallback(this.format(this.time, this.showH, this.showOne));
 };
 Timer.prototype.addTime = function(amount) {
 	this.time += amount;
@@ -37,20 +34,26 @@ Timer.prototype.addTime = function(amount) {
 Timer.prototype.update = function() {
 	if(!this.running) return;
 	const started = Date.now();
-	const elapsed = this.prev === null ? this.updateRate : started - this.prev;
-	if(this.mode === Timer.Mode.STOPWATCH)
-		this.time += elapsed;
-	else
-		this.time -= elapsed;
-	if(this.mode === Timer.Mode.TIMER && this.time <= 0) {
-		this.stop(true);
-		return; //If it doesn't return here, prev will be set to started and used wrongly in the next session
+	if(this.mode === Timer.Mode.CLOCK) {
+		const date = new Date();
+		this.time = date.getHours() * 3600000 + date.getMinutes() * 60000 + date.getSeconds() * 1000 + date.getMilliseconds();
+	}
+	else {
+		const elapsed = this.prev === null ? this.updateRate : started - this.prev;
+		if(this.mode === Timer.Mode.STOPWATCH)
+			this.time += elapsed;
+		else
+			this.time -= elapsed;
+		if(this.mode === Timer.Mode.TIMER && this.time <= 0) {
+			this.stop(true);
+			return; //If it doesn't return here, prev will be set to started and used wrongly in the next session
+		}
 	}
 	this.updateTimeString();
 	this.prev = started;
 };
 Timer.prototype.start = function() {
-	if(!this.running && (this.time > 0 || this.mode === Timer.Mode.STOPWATCH)) {
+	if(!this.running && (this.time > 0 || this.mode !== Timer.Mode.TIMER)) {
 		this.intervalId = setInterval(() => {this.update();}, this.updateRate);
 		this.running = true;
 	}
@@ -72,5 +75,6 @@ Timer.prototype.stop = function(timeRanOut) {
 };
 Timer.Mode = Object.freeze({
 	TIMER: 0,
-	STOPWATCH: 1
+	STOPWATCH: 1,
+	CLOCK: 2
 });
