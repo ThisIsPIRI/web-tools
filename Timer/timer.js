@@ -25,7 +25,7 @@ const changeTitle = function(toWhat) {
 }
 const changeMode = function(mode) {
 	timer.mode = mode;
-	if(mode === Timer.Mode.CLOCK) {
+	if(mode === Timekeeper.Mode.CLOCK) {
 		disclaimer.style.visibility = "visible";
 		timeButtons.style.visibility = "hidden";
 	}
@@ -45,7 +45,7 @@ const imageCredit = document.getElementById("imageCredit");
 const customTitle = document.getElementById("customTitle");
 const disclaimer = document.getElementById("disclaimer");
 const timeButtons = document.getElementById("timeButtons");
-const timer = new Timer(stopped, updateTime, format);
+const timer = new Timekeeper(stopped, updateTime, format);
 
 customTitle.addEventListener("keydown", function(event) {
 	if(event.key == "Enter")
@@ -57,9 +57,9 @@ changeVisibility(showHoursCheck);
 changeVisibility(showUnderOneCheck);
 switch(document.querySelector("input[name='moderadio']:checked").value) {
 case "timer":
-	changeMode(Timer.Mode.TIMER);
+	changeMode(Timekeeper.Mode.TIMER);
 	break;
 case "stopwatch":
-	changeMode(Timer.Mode.STOPWATCH);
+	changeMode(Timekeeper.Mode.STOPWATCH);
 	break;
 }

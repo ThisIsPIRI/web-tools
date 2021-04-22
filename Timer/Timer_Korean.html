@@ -15,9 +15,9 @@
 					<button onclick="timer.stop(false);">지우기</button>
 				</p>
 				<p id="modeButtons">
-					<label><input type="radio" name="moderadio" value="timer" onchange="changeMode(Timer.Mode.TIMER);" checked>올리제잼틀</label>
-					<label><input type="radio" name="moderadio" value="stopwatch" onchange="changeMode(Timer.Mode.STOPWATCH);">내리제잼틀</label>
-					<label><input type="radio" name="moderadio" value="clock" onchange="changeMode(Timer.Mode.CLOCK);">이제틀</label>
+					<label><input type="radio" name="moderadio" value="timer" onchange="changeMode(Timekeeper.Mode.TIMER);" checked>올리제잼틀</label>
+					<label><input type="radio" name="moderadio" value="stopwatch" onchange="changeMode(Timekeeper.Mode.STOPWATCH);">내리제잼틀</label>
+					<label><input type="radio" name="moderadio" value="clock" onchange="changeMode(Timekeeper.Mode.CLOCK);">이제틀</label>
 				</p>
 				<p id="timeButtons">
 					<button onclick="timer.addTime(3600000);">1시간</button>
@@ -48,7 +48,7 @@
 			<a href="Timer_English.html">English version</a>
 		</footer>
 		<script src="background.js"></script>
-		<script src="lib/Timer.js"></script>
+		<script src="lib/Timekeeper.js"></script>
 		<script src="format.js"></script>
 		<script src="lib/sound.js"></script>
 		<script src="timer.js"></script>
