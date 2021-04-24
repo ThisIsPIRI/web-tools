@@ -36,13 +36,15 @@
 				</p>
 				<p id="textChanges">
 					<input id="customTitle" type="text" placeholder="Custom title...">
-					<button onclick="document.title = customTitle.value;">Apply</button>
+					<button class="minorButton" onclick="document.title = customTitle.value;">Apply</button>
 					<input id="customSound" type="text" placeholder="Custom sound file...">
-					<button onclick="setAudioFile(customSound.value);">Apply</button>
+					<button class="minorButton" onclick="setAudioFile(customSound.value);">Apply</button>
+					<input id="customBackground" type="text" placeholder="Custom background file...">
+					<button class="minorButton" onclick="setBackground(customBackground.value);">Apply</button>
 				</p>
 			</div>
 		</article>
-		<button onclick="changeBackground();">Change background</button>
+		<button class="minorButton" onclick="presetBgManager.cycleBackground();">Preset BGs</button>
 		<footer>
 			<span id="imagePath">Image: N/A, </span>
 			<span id="soundPath">Sound: simple beep</span>

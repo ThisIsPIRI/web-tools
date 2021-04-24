@@ -27,3 +27,8 @@ button {
 	width:8em;
 	height:4em;
 }
+.minorButton {
+	width:8em;
+	height:3em;
+	padding:0px;
+}

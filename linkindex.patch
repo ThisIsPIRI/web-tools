@@ -1,12 +1,12 @@
 diff --git a/Timer/Timer_English.html b/Timer/Timer_English.html
 --- a/Timer/Timer_English.html
 +++ b/Timer/Timer_English.html
-@@ -43,7 +43,7 @@
- 		<footer>
- 			<span id="imageCredit">Image: N/A</span>
- 			<br>
+@@ -51,7 +51,7 @@
+			<br>
+			<span id="disclaimer">This is based on time reported by your browser. It may not be accurate.</span>
+			<br>
 -			<a href="Timer_Korean.html">Korean version</a>
 +			<a href="index.html">Korean version</a>
- 		</footer>
- 		<script src="background.js"></script>
- 		<script src="lib/Timer.js"></script>
+		</footer>
+		<script src="background.js"></script>
+		<script src="lib/Timekeeper.js"></script>

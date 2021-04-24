@@ -34,14 +34,16 @@
 					<label><input id="showUnderOneCheck" type="checkbox" onchange="updateTime(timer.time);">1초 밑도 보이기</label>
 				</p>
 				<p id="textChanges">
-					<input id="customTitle" type="text" placeholder="누리쪽 이름">
-					<button onclick="document.title = customTitle.value;">바꾸기</button>
-					<input id="customSound" type="text" placeholder="소리 아롬">
-					<button onclick="setAudioFile(customSound.value);">바꾸기</button>
+					<input id="customTitle" type="text" placeholder="누리쪽 이름...">
+					<button class="minorButton" onclick="document.title = customTitle.value;">바꾸기</button>
+					<input id="customSound" type="text" placeholder="소리 아롬...">
+					<button class="minorButton" onclick="setAudioFile(customSound.value);">바꾸기</button>
+					<input id="customBackground" type="text" placeholder="바탕 아롬...">
+					<button class="minorButton" onclick="setBackground(customBackground.value);">바꾸기</button>
 				</p>
 			</div>
 		</article>
-		<button onclick="changeBackground();">바탕 바꾸기</button>
+		<button class="minorButton" onclick="presetBgManager.cycleBackground();">미리맞 바탕</button>
 		<footer>
 			<span id="imagePath">Image: N/A, </span>
 			<span id="soundPath">Sound: simple beep</span>
