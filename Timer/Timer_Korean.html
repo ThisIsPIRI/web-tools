@@ -35,13 +35,16 @@
 				</p>
 				<p id="textChanges">
 					<input id="customTitle" type="text" placeholder="누리쪽 이름">
-					<button onclick="changeTitle(customTitle.value);">바꾸기</button>
+					<button onclick="document.title = customTitle.value;">바꾸기</button>
+					<input id="customSound" type="text" placeholder="소리 아롬">
+					<button onclick="setAudioFile(customSound.value);">바꾸기</button>
 				</p>
 			</div>
 		</article>
 		<button onclick="changeBackground();">바탕 바꾸기</button>
 		<footer>
-			<span id="imageCredit">Image: N/A</span>
+			<span id="imagePath">Image: N/A, </span>
+			<span id="soundPath">Sound: simple beep</span>
 			<br>
 			<span id="disclaimer">누비개가 알려주는 제에 따른 것으로, 틀릴지도 모릅니다.</span>
 			<br>

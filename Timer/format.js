@@ -11,7 +11,7 @@ const format = function(number, showHour, showUnderOne) {
 	}
 	if(!showUnderOne) result = result.slice(0, -1);
 	return result;
-}
+};
 format.milsecs = Object.freeze([3600000, 60000, 1000, 1]);
 format.separators = Object.freeze([':', ':', '.', '']);
 format.minLens = Object.freeze([2, 2, 2, 3]);

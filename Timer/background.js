@@ -14,7 +14,7 @@ const body = document.getElementsByTagName("body")[0];
 var backgroundNum = 2;
 const changeBackground = function() {
 	window.backgroundNum = (window.backgroundNum + 1) % window.backgroundList.length;
-	body.style.backgroundImage = "url(\"" + window.backgroundList[window.backgroundNum].fileName + "\")";
+	body.style.backgroundImage = `url("${window.backgroundList[window.backgroundNum].fileName}")`;
 	body.style.color = window.backgroundList[window.backgroundNum].enabledColor;
-	imageCredit.innerHTML = "Image: " + window.backgroundList[window.backgroundNum].author;
+	imagePath.innerHTML = `Image: ${window.backgroundList[window.backgroundNum].author}, `;
 }

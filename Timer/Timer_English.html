@@ -36,13 +36,16 @@
 				</p>
 				<p id="textChanges">
 					<input id="customTitle" type="text" placeholder="Custom title...">
-					<button onclick="changeTitle(customTitle.value);">Apply</button>
+					<button onclick="document.title = customTitle.value;">Apply</button>
+					<input id="customSound" type="text" placeholder="Custom sound file...">
+					<button onclick="setAudioFile(customSound.value);">Apply</button>
 				</p>
 			</div>
 		</article>
 		<button onclick="changeBackground();">Change background</button>
 		<footer>
-			<span id="imageCredit">Image: N/A</span>
+			<span id="imagePath">Image: N/A, </span>
+			<span id="soundPath">Sound: simple beep</span>
 			<br>
 			<span id="disclaimer">This is based on time reported by your browser. It may not be accurate.</span>
 			<br>

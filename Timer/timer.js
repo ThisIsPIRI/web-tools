@@ -5,15 +5,10 @@ const updateTime = function(time) {
 };
 const stopped = function(timeRanOut) {
 	if(timeRanOut) {
-		if(USEAUDIOFILE)
-			timeup.play();
-		else
-			sound.repeat(timeup, 3);
+		if(audioValid) audioElem.play();
+		else if(aContext) sound.repeat(aContext, 4);
 	}
 };
-const changeTitle = function(toWhat) {
-	document.title = toWhat;
-}
 const changeMode = function(mode) {
 	Object.assign(timer, keeperMixins[mode]);
 	if(mode === KeeperMode.CLOCK) {
@@ -24,16 +19,30 @@ const changeMode = function(mode) {
 		disclaimer.style.visibility = "hidden";
 		timeButtons.style.visibility = "visible";
 	}
-}
+};
+const setAudioFile = function(filename) {
+	audioElem = new Audio(filename);
+	audioElem.oncanplaythrough = function() {
+		audioValid = true;
+		soundPath.innerHTML = `Sound: loaded ${filename}`;
+	};
+	audioElem.onerror = function() {
+		audioValid = false;
+		soundPath.innerHTML = `Sound: failed to load ${filename}, ${aContext ? "falling back to simple beep" : "no sound will play"}`;
+	};
+};
 
-const USEAUDIOFILE = false;
-const timeup = USEAUDIOFILE ? new Audio("sound/timeup.mp3") : new AudioContext();
+var audioElem = null;
+var audioValid = false;
+const aContext = "AudioContext" in window ? new AudioContext() : null;
 const timeShower = document.getElementById("timeShower");
 const customTime = document.getElementById("customTime");
 const showHoursCheck = document.getElementById("showHoursCheck");
 const showUnderOneCheck = document.getElementById("showUnderOneCheck");
-const imageCredit = document.getElementById("imageCredit");
+const imagePath = document.getElementById("imagePath");
+const soundPath = document.getElementById("soundPath");
 const customTitle = document.getElementById("customTitle");
+const customSound = document.getElementById("customSound");
 const disclaimer = document.getElementById("disclaimer");
 const timeButtons = document.getElementById("timeButtons");
 const timer = new Timekeeper(stopped, updateTime);
@@ -46,8 +55,16 @@ const KeeperMode = Object.freeze({
 
 customTitle.addEventListener("keydown", function(event) {
 	if(event.key == "Enter")
-		changeTitle(customTitle.value);
+		document.title = customTitle.value;
 });
+customSound.addEventListener("keydown", function(event) {
+	if(event.key == "Enter")
+		setAudioFile(customSound.value);
+});
+
+if(!aContext) {
+	soundPath.innerHTML = "Sound: no AudioContext available, please load a sound file";
+}
 
 //Update for potential cached values
 switch(document.querySelector("input[name='moderadio']:checked").value) {
