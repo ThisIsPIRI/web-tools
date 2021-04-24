@@ -16,9 +16,9 @@
 					<button onclick="timer.stop(false);">Stop</button>
 				</p>
 				<p id="modeButtons">
-					<label><input type="radio" name="moderadio" value="timer" onchange="changeMode(Timekeeper.Mode.TIMER);" checked>Timer mode</label>
-					<label><input type="radio" name="moderadio" value="stopwatch" onchange="changeMode(Timekeeper.Mode.STOPWATCH);">Stopwatch mode</label>
-					<label><input type="radio" name="moderadio" value="clock" onchange="changeMode(Timekeeper.Mode.CLOCK);">Clock mode</label>
+					<label><input type="radio" name="moderadio" value="timer" onchange="changeMode(KeeperMode.TIMER);" checked>Timer mode</label>
+					<label><input type="radio" name="moderadio" value="stopwatch" onchange="changeMode(KeeperMode.STOPWATCH);">Stopwatch mode</label>
+					<label><input type="radio" name="moderadio" value="clock" onchange="changeMode(KeeperMode.CLOCK);">Clock mode</label>
 				</p>
 				<p id="timeButtons">
 					<button onclick="timer.addTime(3600000);">1h</button>
