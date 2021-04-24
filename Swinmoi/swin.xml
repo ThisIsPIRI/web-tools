@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<!--케이트 쉰모이 말본빛깔입힘-->
+<language name="Swinmoi" section="Other" extensions="*.swin" version="1" kateversion="5.0">
+<highlighting>
+	<contexts>
+		<context name="Olimmal" attribute="Normal" lineEndContext="#stay">
+			<AnyChar attribute="Comment" context="Comment" String="#*" firstNonSpace="true"/>
+			<AnyChar attribute="Symbol" context="#stay" String="[]()/,"/>
+			<!--<Int attribute="Number" context="#stay" firstNonSpace="true"/>-->
+			<RegExpr attribute="Number" context="#stay" String="^\s*[0-9]+\s+"/>
+			<StringDetect attribute="Keyword" context="Bogi" String="++++++보기와 붙임++++++"/>
+		</context>
+		<context name="Bogi" attribute="Normal" lineEndContext="#stay">
+			<DetectChar attribute="Number" context="Boginum" char="#" firstNonSpace="true"/>
+		</context>
+		<context name="Comment" attribute="Comment" lineEndContext="#pop"/>
+		<context name="Boginum" attribute="Number" lineEndContext="#pop"/>
+	</contexts>
+	<itemDatas>
+		<itemData name="Normal" defStyleNum="dsNormal"/>
+		<itemData name="Comment" defStyleNum="dsComment"/>
+		<itemData name="Number" defStyleNum="dsPreprocessor"/>
+		<itemData name="Symbol" defStyleNum="dsVariable"/>
+		<itemData name="Keyword" defStyleNum="dsControlFlow"/>
+	</itemDatas>
+</highlighting>
+</language>

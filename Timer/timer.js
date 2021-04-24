@@ -31,6 +31,11 @@ const setAudioFile = function(filename) {
 		soundPath.innerHTML = `Sound: failed to load ${filename}, ${aContext ? "falling back to simple beep" : "no sound will play"}`;
 	};
 };
+const setBackground = function(filename) {
+	body.style.backgroundImage = `url("${filename}")`;
+	body.style.color = "rgb(255, 255, 255)";
+	imagePath.innerHTML = `Image: ${filename}, `;
+}
 
 var audioElem = null;
 var audioValid = false;
@@ -60,6 +65,10 @@ customTitle.addEventListener("keydown", function(event) {
 customSound.addEventListener("keydown", function(event) {
 	if(event.key == "Enter")
 		setAudioFile(customSound.value);
+});
+customBackground.addEventListener("keydown", function(event) {
+	if(event.key == "Enter")
+		setBackground(customBackground.value);
 });
 
 if(!aContext) {
