@@ -31,8 +31,8 @@
 					<button onclick="timer.addTime(parseInt(customTime.value) * 60000 || 0);">m</button>
 				</p>
 				<p id="showChecks">
-					<label><input id="showHoursCheck" type="checkbox" onchange="changeVisibility(this);">Show over 1h</label>
-					<label><input id="showUnderOneCheck" type="checkbox" onchange="changeVisibility(this);">Show under 1s</label>
+					<label><input id="showHoursCheck" type="checkbox" onchange="updateTime(timer.time);">Show over 1h</label>
+					<label><input id="showUnderOneCheck" type="checkbox" onchange="updateTime(timer.time);">Show under 1s</label>
 				</p>
 				<p id="textChanges">
 					<input id="customTitle" type="text" placeholder="Custom title...">

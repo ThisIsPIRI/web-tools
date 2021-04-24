@@ -1,16 +1,7 @@
 "use strict";
 
-const changeVisibility = function(ofWhat) {
-	switch(ofWhat) {
-	case showHoursCheck:
-		timer.showH = showHoursCheck.checked; break;
-	case showUnderOneCheck:
-		timer.showOne = showUnderOneCheck.checked; break;
-	}
-	timer.updateTimeString();
-};
-const updateTime = function(timeString) {
-	timeShower.innerHTML = timeString;
+const updateTime = function(time) {
+	timeShower.innerHTML = format(time, showHoursCheck.checked, showUnderOneCheck.checked);
 };
 const stopped = function(timeRanOut) {
 	if(timeRanOut) {
@@ -45,7 +36,7 @@ const imageCredit = document.getElementById("imageCredit");
 const customTitle = document.getElementById("customTitle");
 const disclaimer = document.getElementById("disclaimer");
 const timeButtons = document.getElementById("timeButtons");
-const timer = new Timekeeper(stopped, updateTime, format);
+const timer = new Timekeeper(stopped, updateTime);
 const keeperMixins = [TimerMixin, StopwatchMixin, ClockMixin];
 const KeeperMode = Object.freeze({
 	TIMER: 0,
@@ -70,5 +61,4 @@ case "clock":
 	changeMode(KeeperMode.CLOCK);
 	break;
 }
-changeVisibility(showHoursCheck);
-changeVisibility(showUnderOneCheck);
+updateTime(timer.time);

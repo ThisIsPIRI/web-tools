@@ -15,8 +15,8 @@
 					<button onclick="timer.stop(false);">지우기</button>
 				</p>
 				<p id="modeButtons">
-					<label><input type="radio" name="moderadio" value="timer" onchange="changeMode(KeeperMode.TIMER);" checked>올리제잼틀</label>
-					<label><input type="radio" name="moderadio" value="stopwatch" onchange="changeMode(KeeperMode.STOPWATCH);">내리제잼틀</label>
+					<label><input type="radio" name="moderadio" value="timer" onchange="changeMode(KeeperMode.TIMER);" checked>내리제잼틀</label>
+					<label><input type="radio" name="moderadio" value="stopwatch" onchange="changeMode(KeeperMode.STOPWATCH);">올리제잼틀</label>
 					<label><input type="radio" name="moderadio" value="clock" onchange="changeMode(KeeperMode.CLOCK);">이제틀</label>
 				</p>
 				<p id="timeButtons">
@@ -30,8 +30,8 @@
 					<button onclick="timer.addTime(parseInt(customTime.value) * 60000 || 0);">분</button>
 				</p>
 				<p id="showChecks">
-					<label><input id="showHoursCheck" type="checkbox" onchange="changeVisibility(this);">1시간 위도 보이기</label>
-					<label><input id="showUnderOneCheck" type="checkbox" onchange="changeVisibility(this);">1초 밑도 보이기</label>
+					<label><input id="showHoursCheck" type="checkbox" onchange="updateTime(timer.time);">1시간 위도 보이기</label>
+					<label><input id="showUnderOneCheck" type="checkbox" onchange="updateTime(timer.time);">1초 밑도 보이기</label>
 				</p>
 				<p id="textChanges">
 					<input id="customTitle" type="text" placeholder="누리쪽 이름">
