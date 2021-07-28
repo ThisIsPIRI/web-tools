@@ -5,6 +5,8 @@ Array.prototype.하나하나 = Array.prototype.forEach;
 Array.prototype.태우기 = Array.prototype.map;
 Array.prototype.덧붙이기 = Array.prototype.concat;
 Array.prototype.잘라내기 = Array.prototype.slice;
+Array.prototype.붙이기 = Array.prototype.splice;
+Array.prototype.몇째 = Array.prototype.indexOf;
 String.prototype.가르기 = String.prototype.split;
 String.prototype.몇째 = String.prototype.indexOf;
 String.prototype.잘라내기 = String.prototype.slice;
@@ -13,9 +15,14 @@ String.prototype.바꿔치기 = String.prototype.replace;
 String.prototype.빈곳깎기 = String.prototype.trim;
 Math.큰것 = Math.max;
 const 셈본 = Math;
-const 온셀얻기 = window.parseInt;
+Map.prototype.넣기 = Map.prototype.set;
+Map.prototype.얻기 = Map.prototype.get;
+Map.prototype.하나하나 = Map.prototype.forEach;
+const 잇그림 = Map;
+const 온셀얻기 = parseInt;
 const 참 = true;
 const 거짓 = false;
+const 없음 = null;
 
 const 낱말 = function(말, 바꿈꼴, 밑) {
 	this.말 = 말; //낱말 글씨줄(문자열)
@@ -86,23 +93,36 @@ const 붙임읽기 = function(안글) {
 	return 몬붙임;
 };
 
+/**쉰모이 아롬을 읽어 다듬은말을 만듭니다.
+ * @param 안글 {글씨줄} - 아롬의 안글
+ * @returns {잇그림} 열쇠->늘다듬은말. 열쇠는 모이갈래가 있는 다듬은말들은 갈래 이름 글씨줄, 없는 다듬은말들은 말모이아롬읽기.갈래없음(값은 온셀 0)입니다.*/
 const 말모이아롬읽기 = function(안글) {
 	안글 = 안글.가르기("++++++보기와 붙임++++++\n");
 	const 몬붙임 = 붙임읽기(안글[1]);
-	const 늘낱말 = [];
+	const 늘낱말들 = new 잇그림();
+	let 늘낱말 = 없음;
 	const 늘줄 = 가르고깎기(안글[0], '\n');
 	늘줄.하나하나(function(줄) {
 		if(줄 === '' || 줄[0] === '#' || 줄[0] === '*')
 			return;
+		else if(줄.length >= 12 && 줄.잘라내기(0, 6) === "++++++" && 줄.잘라내기(-6) === "++++++") {
+			늘낱말 = [];
+			늘낱말들.넣기(줄.잘라내기(6, -6), 늘낱말);
+		}
 		else {
 			const 읽은줄 = 줄읽기(줄);
 			if(몬붙임[읽은줄.몇째])
 				읽은줄.붙임 = 몬붙임[읽은줄.몇째];
+			if(늘낱말 === 없음) {
+				늘낱말 = [];
+				늘낱말들.넣기(말모이아롬읽기.갈래없음, 늘낱말);
+			}
 			늘낱말.넣기(읽은줄);
 		}
 	});
-	return 늘낱말;
+	return 늘낱말들;
 };
+말모이아롬읽기.갈래없음 = 0;
 
 const 글씨줄서찾기 = function(줄, 찾을말) {
 	if(줄 === 찾을말)
@@ -118,10 +138,10 @@ const 글씨줄서찾기 = function(줄, 찾을말) {
  * @returns {온셀} 없으면 -1, 똑같은 낱말이 있으면 1, 조금 맞는 낱말이 있으면 0*/
 const 늘낱말서찾기 = function(늘낱말, 찾을말) {
 	var 찾았나 = -1;
-	for(var ㅏ = 0;ㅏ < 늘낱말.length;ㅏ++) {
+	for(let ㅏ = 0;ㅏ < 늘낱말.length;ㅏ++) {
 		찾았나 = 셈본.큰것(찾았나, 글씨줄서찾기(늘낱말[ㅏ].말, 찾을말));
 		if(늘낱말[ㅏ].바꿈꼴) {
-			for(var ㅑ = 0;ㅑ < 늘낱말[ㅏ].바꿈꼴.length;ㅑ++) {
+			for(let ㅑ = 0;ㅑ < 늘낱말[ㅏ].바꿈꼴.length;ㅑ++) {
 				찾았나 = 셈본.큰것(찾았나, 글씨줄서찾기(늘낱말[ㅏ].바꿈꼴[ㅑ], 찾을말));
 			}
 		}

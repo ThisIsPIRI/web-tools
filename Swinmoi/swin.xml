@@ -9,7 +9,8 @@
 			<AnyChar attribute="Symbol" context="#stay" String="[]()/,"/>
 			<!--<Int attribute="Number" context="#stay" firstNonSpace="true"/>-->
 			<RegExpr attribute="Number" context="#stay" String="^\s*[0-9]+\s+"/>
-			<StringDetect attribute="Keyword" context="Bogi" String="++++++보기와 붙임++++++"/>
+			<StringDetect attribute="Galae" context="Bogi" String="++++++보기와 붙임++++++"/>
+			<RegExpr attribute="Galae" Context="#stay" String="^\+{6}.*\+{6}"/>
 		</context>
 		<context name="Bogi" attribute="Normal" lineEndContext="#stay">
 			<DetectChar attribute="Number" context="Boginum" char="#" firstNonSpace="true"/>
@@ -22,7 +23,7 @@
 		<itemData name="Comment" defStyleNum="dsComment"/>
 		<itemData name="Number" defStyleNum="dsPreprocessor"/>
 		<itemData name="Symbol" defStyleNum="dsVariable"/>
-		<itemData name="Keyword" defStyleNum="dsControlFlow"/>
+		<itemData name="Galae" defStyleNum="dsControlFlow"/>
 	</itemDatas>
 </highlighting>
 </language>

@@ -11,7 +11,7 @@ def makeswin(origswin):
 	newswin = ""
 	counter = 1
 	for l in origswin:
-		if l[0] == '\n' or l[0] == '#':
+		if l[0] == '\n' or l[0] == '#' or l[0] == '+':
 			newswin += l
 			continue
 		splitted = l.split()

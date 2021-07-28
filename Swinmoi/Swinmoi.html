@@ -10,8 +10,7 @@
 	<body>
 		<input id="찾을말치" type="text" autofocus>
 		<button id="찾기단추" onclick="친말로찾기();">찾기</button>
-		<label><input id="안흔찾기" type="checkbox" checked>안 흔한 말</label>
-		<label><input id="엮맞찾기" type="checkbox" checked>엮은이가 맞춘말</label>
+		<span id="모이숨김묶음"></span>
 		<label><input name="어디서찾" value="모두서" type="radio" checked>모두서</label>
 		<label><input name="어디서찾" value="들온말서만" type="radio">들온말서만</label>
 		<label><input name="어디서찾" value="맨말서만" type="radio">맨말서만</label>
@@ -26,8 +25,8 @@
 			화살보람 오른쪽 다듬은말은 모두 맨우리말이며 [] 안에 다듬은 보기로 실은 섞인말 몇을 빼면 한자, 깊들온말(귀화어), 들온말은 하나도 없습니다. <br>
 			움직씨와 그림씨 가운데 "하다", "되다"로 끝나면서 네글씨보다 긴 것은 "하다", "되다"를 쓰지 않았습니다.<br>
 			띄어써서 읽기 쉬워지는 말이 아니면 굳이 띄어쓰지 않았습니다. <br>
-			쉼을 쓰면 여러 말을 함께 찾습니다. 보기: 함께,찾다 <br>
-			큰따옴을 쓰면 똑같은 말만 찾습니다. 보기: "동" <br>
+			쉼보람을 쓰면 여러 말을 함께 찾습니다. 보기: 함께,찾다 <br>
+			큰따옴보람을 쓰면 똑같은 말만 찾습니다. 보기: "동" <br>
 			모든 낱말을 보려면 아무것도 넣지 말고 찾기를 누르세요. <br>
 			찾넘김(GET)도 됩니다. 보기: ?q=넘기다
 		</footer>

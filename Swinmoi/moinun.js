@@ -2,7 +2,10 @@
 
 document.바가름로찾기 = document.getElementById;
 document.걸러찾기 = document.querySelector;
+document.이루조각만들기 = document.createElement;
 const 누리쪽 = document;
+Node.prototype.아이더하기 = Node.prototype.appendChild;
+Element.prototype.더하기 = Element.prototype.append;
 History.prototype.간곳넣기 = History.prototype.pushState;
 window.발자취 = window.history;
 const 누리봄 = window;
@@ -48,11 +51,12 @@ const 다듬모습만들기 = function(보여줄말) {
  @param 찾을말 {글씨줄} - 찾을 말*/
 const 찾아모습만들기 = function(찾을말) {
 	var 만든것 = '';
-	var 찾을모이 = [흔한모이];
-	if(안흔찾기.checked)
-		찾을모이.넣기(안흔모이);
-	if(엮맞찾기.checked)
-		찾을모이.넣기(엮맞모이);
+	var 찾을모이 = [];
+	for(let ㅏ = 0; ㅏ < 늘모이숨김.length;ㅏ++) {
+		if(늘모이숨김[ㅏ] === 없음 || 늘모이숨김[ㅏ].checked) {
+			찾을모이.넣기(늘모이[ㅏ]);
+		}
+	}
 	찾을말 = 찾을말.빈곳깎기();
 	//할것: 이걸 없애고 제대로 된 함께찾기를 만들 것
 	if(찾을말.몇째(',') != -1) {
@@ -75,7 +79,11 @@ const 찾아모습만들기 = function(찾을말) {
 		const 따옴 = 똑같은것만 ? '"' : '\'';
 		const 따옴떼고 = 똑같은것만 ? "큰따옴(\")을 떼고 찾아 보세요.<br>" : "";
 		const 모두서누르고 = 어디서찾 !== "모두서" ? "'모두서'를 누르고 찾아 보세요.<br>" : "";
-		const 모이켜고 = !안흔찾기.checked || !엮맞찾기.checked ? "'안 흔한 말' '엮은이가 맞춘말'을 켜 보세요.<br>" : "";
+		let 모이켜고 = "";
+		for(let ㅏ = 0;ㅏ < 늘모이숨김.length;ㅏ++) {
+			if(늘모이숨김[ㅏ] !== 없음 && !늘모이숨김[ㅏ].checked) 모이켜고 += `'${늘모이름[ㅏ]}' `;
+		};
+		if(모이켜고 !== "") 모이켜고 += "을 켜 보세요.<br>";
 		만든것 = `<p>${따옴}${찾을말}${따옴}은 이 말모이에 없는 것 같습니다.<br>
 		${따옴떼고} ${모두서누르고} ${모이켜고}
 		움직씨나 그림씨라면 -다 꼴로 찾아 보세요.</p>`;
@@ -104,18 +112,16 @@ const 찾넘김로찾기 = function() {
 	}
 };
 
-var 흔한모이, 안흔모이, 엮맞모이;
-var 얼마나갖 = 0;
 const 보여주는곳 = 누리쪽.바가름로찾기("보여주는곳");
 const 찾을말치 = 누리쪽.바가름로찾기("찾을말치");
-const 안흔찾기 = 누리쪽.바가름로찾기("안흔찾기");
-const 엮맞찾기 = 누리쪽.바가름로찾기("엮맞찾기");
 const 찾은말적어놓기 = 누리쪽.바가름로찾기("찾은말적어놓기");
-const 아로밀서모일로 = {
-	"manuri.swin": "흔한모이",
-	"anhen.swin": "안흔모이",
-	"yemat.swin": "엮맞모이"
-};
+const 모이숨김묶음 = 누리쪽.바가름로찾기("모이숨김묶음");
+
+const 늘모이 = [];
+const 늘모이름 = [];
+const 늘모이숨김 = [];
+var 얼마나갖 = 0;
+const 늘아롬이름 = ["manuri.swin", "yemat.swin"]; //말모이아롬읽기가 돌려주는 잇그림으로 덮어쓰임.
 
 찾을말치.귀더하기("keydown", function(일어남) {
 	if(일어남.key == "Enter")
@@ -123,10 +129,27 @@ const 아로밀서모일로 = {
 });
 누리봄.onpopstate = 찾넘김로찾기;
 
-안고치손.다가져오기(["manuri.swin", "anhen.swin", "yemat.swin"], function(읽은모이, 아로밀) {
-	누리봄[아로밀서모일로[아로밀]] = 말모이아롬읽기(읽은모이);
+안고치손.다가져오기(늘아롬이름, function(읽은글, 아롬이름) {
+	늘아롬이름[늘아롬이름.몇째(아롬이름)] = 말모이아롬읽기(읽은글);
 	얼마나갖 += 1;
-	if(얼마나갖 >= 3) {
+	if(얼마나갖 >= 늘아롬이름.length) {
+		for(let ㅏ = 0;ㅏ < 늘아롬이름.length;ㅏ++) {
+			늘아롬이름[ㅏ].하나하나(function(값, 열쇠) {
+				늘모이.넣기(값);
+				늘모이름.넣기(열쇠);
+				if(열쇠 !== 말모이아롬읽기.갈래없음) {
+					const 무엇글 = 누리쪽.이루조각만들기("label");
+					const 걲시옷 = 누리쪽.이루조각만들기("input");
+					걲시옷.type = "checkbox";
+					걲시옷.checked = 참;
+					무엇글.아이더하기(걲시옷);
+					무엇글.더하기(열쇠);
+					모이숨김묶음.아이더하기(무엇글);
+					늘모이숨김.넣기(걲시옷);
+				}
+				else 늘모이숨김.넣기(없음);
+			});
+		}
 		보여주는곳.innerHTML = "";
 		찾넘김로찾기();
 	}
