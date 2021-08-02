@@ -6,9 +6,9 @@ Array.prototype.태우기 = Array.prototype.map;
 Array.prototype.덧붙이기 = Array.prototype.concat;
 Array.prototype.잘라내기 = Array.prototype.slice;
 Array.prototype.붙이기 = Array.prototype.splice;
-Array.prototype.몇째 = Array.prototype.indexOf;
+Array.prototype.서몇째 = Array.prototype.indexOf;
 String.prototype.가르기 = String.prototype.split;
-String.prototype.몇째 = String.prototype.indexOf;
+String.prototype.서몇째 = String.prototype.indexOf;
 String.prototype.잘라내기 = String.prototype.slice;
 String.prototype.작은줄 = String.prototype.substring;
 String.prototype.바꿔치기 = String.prototype.replace;
@@ -17,6 +17,7 @@ Math.큰것 = Math.max;
 const 셈본 = Math;
 Map.prototype.넣기 = Map.prototype.set;
 Map.prototype.얻기 = Map.prototype.get;
+Map.prototype.있나 = Map.prototype.has;
 Map.prototype.하나하나 = Map.prototype.forEach;
 const 잇그림 = Map;
 const 온셀얻기 = parseInt;
@@ -38,21 +39,19 @@ const 다듬은말 = function(몇째, 늘들온말, 늘맨말, 붙임) {
 };
 
 const 가르고깎기 = function(글씨줄, 가를곳) {
-	return 글씨줄.가르기(가를곳).태우기(function(갈린글) {
-		return 갈린글.빈곳깎기();
-	});
+	return 글씨줄.가르기(가를곳).태우기(갈린글 => 갈린글.빈곳깎기());
 }
 
 const 말읽기 = function(안글) {
 	안글 = 안글.가르기('/');
 	return 안글.태우기(function(글) {
 		const 만든것 = new 낱말();
-		const 앞작도림 = 글.몇째('('), 뒷작도림 = 글.몇째(')');
+		const 앞작도림 = 글.서몇째('('), 뒷작도림 = 글.서몇째(')');
 		if(앞작도림 != -1) {
 			만든것.밑 = 글.잘라내기(앞작도림 + 1, 뒷작도림)
 			글 = 글.작은줄(0, 앞작도림) + 글.작은줄(뒷작도림 + 1, 글.length);
 		}
-		const 앞큰도림 = 글.몇째('['), 뒷큰도림 = 글.몇째(']');
+		const 앞큰도림 = 글.서몇째('['), 뒷큰도림 = 글.서몇째(']');
 		if(앞큰도림 != -1) {
 			만든것.바꿈꼴 = 글.잘라내기(앞큰도림 + 1, 뒷큰도림).가르기(',');
 			글 = 글.작은줄(0, 앞큰도림) + 글.작은줄(뒷큰도림 + 1, 글.length);
@@ -63,34 +62,35 @@ const 말읽기 = function(안글) {
 };
 
 const 줄읽기 = function(줄) {
-	줄 = 줄.가르기(' ');
+	줄 = 줄.가르기(/\s+/);
 	줄 = 줄.태우기(function(마디) {
 		return 마디.바꿔치기(/_/g, ' ');
 	});
-	return new 다듬은말(온셀얻기(줄[0]), 말읽기(줄[1]), 말읽기(줄[2]));
+	if(줄.length >= 3)
+		return new 다듬은말(온셀얻기(줄[0]), 말읽기(줄[1]), 말읽기(줄[2]));
+	else return new 다듬은말(없음, 말읽기(줄[0]), 말읽기(줄[1]));
 };
 
 const 붙임읽기 = function(안글) {
-	const 몬붙임 = {};
-	var 몇째;
+	const 붙임들 = new 잇그림();
+	var 늘몇째;
 	가르고깎기(안글, '\n').하나하나(function(줄) {
 		if(줄[0] === '#') {
-			몇째 = 줄.가르기(' ');
-			몇째 = 몇째.잘라내기(1, 몇째.length);
-			몇째.하나하나(function(째) {
-				if(!몬붙임[째])
-					몬붙임[째] = [];
+			늘몇째 = 줄.가르기(/\s+/).잘라내기(1).태우기(셀글 => 온셀얻기(셀글));
+			늘몇째.하나하나(function(째) {
+				if(!붙임들.있나(째))
+					붙임들.넣기(째, []);
 			});
 		}
 		else if(줄 === '')
 			return;
 		else {
-			몇째.하나하나(function(째) {
-				몬붙임[째].넣기(줄);
+			늘몇째.하나하나(function(째) {
+				붙임들.얻기(째).넣기(줄);
 			});
 		}
 	});
-	return 몬붙임;
+	return 붙임들;
 };
 
 /**쉰모이 아롬을 읽어 다듬은말을 만듭니다.
@@ -98,7 +98,7 @@ const 붙임읽기 = function(안글) {
  * @returns {잇그림} 열쇠->늘다듬은말. 열쇠는 모이갈래가 있는 다듬은말들은 갈래 이름 글씨줄, 없는 다듬은말들은 말모이아롬읽기.갈래없음(값은 온셀 0)입니다.*/
 const 말모이아롬읽기 = function(안글) {
 	안글 = 안글.가르기("++++++보기와 붙임++++++\n");
-	const 몬붙임 = 붙임읽기(안글[1]);
+	const 붙임들 = 안글.length >= 2 ? 붙임읽기(안글[1]) : new 잇그림();
 	const 늘낱말들 = new 잇그림();
 	let 늘낱말 = 없음;
 	const 늘줄 = 가르고깎기(안글[0], '\n');
@@ -111,8 +111,8 @@ const 말모이아롬읽기 = function(안글) {
 		}
 		else {
 			const 읽은줄 = 줄읽기(줄);
-			if(몬붙임[읽은줄.몇째])
-				읽은줄.붙임 = 몬붙임[읽은줄.몇째];
+			if(붙임들.있나(읽은줄.몇째))
+				읽은줄.붙임 = 붙임들.얻기(읽은줄.몇째);
 			if(늘낱말 === 없음) {
 				늘낱말 = [];
 				늘낱말들.넣기(말모이아롬읽기.갈래없음, 늘낱말);
@@ -127,7 +127,7 @@ const 말모이아롬읽기 = function(안글) {
 const 글씨줄서찾기 = function(줄, 찾을말) {
 	if(줄 === 찾을말)
 		return 1;
-	else if(줄.몇째(찾을말) != -1)
+	else if(줄.서몇째(찾을말) != -1)
 		return 0;
 	else return -1;
 };
