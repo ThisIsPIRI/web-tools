@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'oesol';
+	src: url('OesolSerif-RegularVer1.1.ttf');
+}
+body {
+	font-family: 'oesol';
+}
+textarea {
+	font-family: 'oesol';
+	font-size: 250%;
+}

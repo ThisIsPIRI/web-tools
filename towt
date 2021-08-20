@@ -7,7 +7,9 @@ patch Timer/Timer_English.html linkindex.patch
 mv RandomMath rm
 mv Swinmoi sm
 mv Timer tm
+mv Amuneoh am
 mv rm/RandomMath.html rm/index.html
 mv sm/Swinmoi.html sm/index.html
 mv tm/Timer_Korean.html tm/index.html
+mv am/Amuneoh.html am/index.html
 rm linkindex.patch
