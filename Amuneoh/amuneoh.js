@@ -5,13 +5,82 @@ String.prototype.큰글씨로 = String.prototype.toUpperCase;
 String.prototype.작은줄 = String.prototype.substring;
 String.두루째서 = String.fromCodePoint;
 const 글줄 = String;
+Array.prototype.넣어 = Array.prototype.push;
+Array.prototype.태워 = Array.prototype.map;
+Array.prototype.글로이어 = Array.prototype.join;
+Array.prototype.붙여 = Array.prototype.splice;
+Array.prototype.서몇째 = Array.prototype.indexOf;
+Promise.prototype.그리고 = Promise.prototype.then;
+Promise.prototype.안되면 = Promise.prototype.catch;
 
+FileReader.prototype.DataURL로읽어 = FileReader.prototype.readAsDataURL;
+const 아롬읽개 = FileReader;
+FontFace.prototype.불러와 = FontFace.prototype.load;
+const 글겉 = FontFace;
+FontFaceSet.prototype.더해 = FontFaceSet.prototype.add;
 document.매기름로찾아 = document.getElementById;
 document.걸러찾아 = document.querySelector;
 const 누리쪽 = document;
 EventTarget.prototype.귀더해 = EventTarget.prototype.addEventListener;
 KeyboardEvent.prototype.꾸밈쇠채는 = KeyboardEvent.prototype.getModifierState;
 Event.prototype.애이막아 = Event.prototype.preventDefault;
+
+
+
+const 글꼴건사 = function(늘첫글꼴, 늘씌울곳) {
+	this.늘씌울곳 = 늘씌울곳;
+	this.늘글꼴 = [];
+	this.늘켠글꼴 = [];
+	this.읽개 = new 아롬읽개();
+	for(let ㅏ = 0;ㅏ < 늘첫글꼴.length;ㅏ++) {
+		this.글꼴더해(늘첫글꼴[ㅏ].찾는길, 늘첫글꼴[ㅏ].이름);
+	}
+};
+글꼴건사.prototype._글꼴더해 = function(url, 이름) {
+	const 새글꼴매기름 = `custom-${this.늘글꼴.length}`;
+	const 새글겉 = new 글겉(새글꼴매기름, `url('${url}')`);
+	새글겉.불러와().그리고((불러온) => {
+		this.늘글꼴.넣어(new 글꼴건사.글꼴(이름, 새글꼴매기름));
+		this.글꼴켜(this.늘글꼴.length - 1);
+		누리쪽.fonts.더해(불러온);
+	}).안되면((까닭) => {
+		alert(`글꼴 ${이름}을 불러오지 못했습니다.`);
+	});
+};
+/**글꼴을 더하고, 더한 글꼴을 켠다.
+ * @param 아롬 {글줄 또는 File} - 글줄이면 그대로 쓰고 File이면 data URL로 바꿔 쓴다.
+ * @param 이름 {글줄} - 아롬이 글줄이면 글꼴 이름으로 쓰고 File이면 쓰지 않는다.*/
+글꼴건사.prototype.글꼴더해 = function(아롬, 이름) {
+	if(typeof 아롬 === "string") {
+		this._글꼴더해(아롬, 이름);
+	}
+	else {
+		this.읽개.onload = (일어남) => {
+			this._글꼴더해(일어남.target.result, 아롬.name);
+		};
+		this.읽개.DataURL로읽어(아롬);
+	}
+};
+글꼴건사.prototype.글꼴씌워 = function() {
+	let ㄱ줄 = this.늘켠글꼴.태워(ㄱ => ㄱ.매기름).글로이어(',');
+	for(let ㅏ = 0;ㅏ < this.늘씌울곳.length;ㅏ++) {
+		this.늘씌울곳[ㅏ].style["font-family"] = ㄱ줄;
+	}
+};
+글꼴건사.prototype.글꼴켜 = function(셀) {
+	this.늘켠글꼴.넣어(this.늘글꼴[셀]);
+	this.글꼴씌워();
+};
+글꼴건사.prototype.글꼴꺼 = function(셀) {
+	this.늘켠글꼴.붙여(this.늘켠글꼴.서몇째(this.늘글꼴[셀]), 1);
+	this.글꼴씌워();
+};
+글꼴건사.글꼴 = function(이름, 매기름) {
+	this.이름 = 이름;
+	this.매기름 = 매기름;
+};
+
+
 
 푼한글 = {
 	이름: "외솔 풀어쓰기",
@@ -146,18 +215,25 @@ Event.prototype.애이막아 = Event.prototype.preventDefault;
 };
 
 
+
 const 도움말바꿔 = function() {
 	글쇠도움말.innerHTML = 넣을글들[온셀얻어(누리쪽.걸러찾아("input[name='넣을글']:checked").value)].도움말;
 	켜끔도움말.innerText = 끄기걲시옷.checked ? "아무넣을 껐습니다." : "고른 글이 안 쳐지면 글쇠판/넣개를 쿼티로 맞춰 보세요."
 };
 
+
 const 넣을글들 = [푼한글, 키릴, 오감];
+const ㄱ꼴건사 = new 글꼴건사([
+	{찾는길: "OesolSerif-RegularVer1.1.ttf", 이름: "외솔"}
+], [누리쪽.걸러찾아("textarea")]);
+//], [누리쪽.styleSheets[0].cssRules[2]]);
 
 const 말치 = 누리쪽.매기름로찾아("말치");
 const 글쇠도움말 = 누리쪽.매기름로찾아("글쇠도움말");
 const 켜끔도움말 = 누리쪽.매기름로찾아("켜끔도움말");
 const 끄기걲시옷 = 누리쪽.매기름로찾아("끄기걲시옷");
 const 넣을글묶음 = 누리쪽.매기름로찾아("넣을글묶음");
+const 글꼴아롬 = 누리쪽.매기름로찾아("글꼴아롬");
 
 var 스치 = "";
 for(let ㅏ = 0;ㅏ < 넣을글들.length; ㅏ++) {
@@ -172,6 +248,10 @@ for(let ㅏ = 0;ㅏ < 넣을글들.length; ㅏ++) {
 		끄기걲시옷.checked = !끄기걲시옷.checked;
 		도움말바꿔();
 	}
+});
+
+글꼴아롬.귀더해("change", function(일어남) {
+	ㄱ꼴건사.글꼴더해(글꼴아롬.files[0]);
 });
 
 말치.귀더해("keydown", function(일어남) {

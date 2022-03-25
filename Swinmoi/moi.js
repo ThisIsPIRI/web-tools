@@ -6,6 +6,7 @@ Array.prototype.태우기 = Array.prototype.map;
 Array.prototype.덧붙이기 = Array.prototype.concat;
 Array.prototype.잘라내기 = Array.prototype.slice;
 Array.prototype.붙이기 = Array.prototype.splice;
+Array.prototype.글로잇기 = Array.prototype.join;
 Array.prototype.서몇째 = Array.prototype.indexOf;
 String.prototype.가르기 = String.prototype.split;
 String.prototype.서몇째 = String.prototype.indexOf;
