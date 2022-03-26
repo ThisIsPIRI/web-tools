@@ -1,11 +1,10 @@
 @font-face {
-	font-family: 'oesol';
-	src: url('OesolSerif-RegularVer1.1.ttf');
+	font-family: 'cmuo';
+	src: url('CMUOSerif-Hangulman.otf');
 }
 body {
-	font-family: 'oesol';
+	font-family: 'cmuo';
 }
 textarea {
-	font-family: 'oesol';
 	font-size: 250%;
 }
