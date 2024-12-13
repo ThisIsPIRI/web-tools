@@ -1,32 +1,16 @@
 {%s} ^ {%s}
-2
 {%s} + {%s}
-2
 {%s} - {%s}
-2
 {%s} \cdot {%s}
-2
 \frac{%s}{%s}
-2
 \sum_{%s}^{%s}
-2
 \prod_{%s}^{%s}
-2
 \log_{%s}{%s}
-2
 \overline{%s}
-1
 \overrightarrow{%s}
-1
 {%s} \pm {%s}
-2
 {%s}_{%s}
-2
 \frac{\partial {%s}}{\partial {%s}}({%s})
-3
 \int_{%s}^{%s} {%s}
-3
 \sqrt{%s}
-1
 \lim_{{%s} \rightarrow {%s}}{%s}
-3

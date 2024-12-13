@@ -5,10 +5,11 @@ const Pattern = function(code, vars) {
 };
 
 const readPatterns = function(fileName, toPushTo, callback) {
+	const countOccurrence = (str, substr) => str.split(substr).length - 1;
 	ajaxRequester.request(fileName, function(read) {
 		tokens = ajaxRequester.getTokensFrom(read, null, '\n');
-		for(var i = 1;i < tokens.length;i += 2) {
-			toPushTo.push(new Pattern(tokens[i - 1], parseInt(tokens[i])));
+		for(var i = 0;i < tokens.length;i++) {
+			toPushTo.push(new Pattern(tokens[i], countOccurrence(tokens[i], "{%s}")));
 		}
 		callback();
 	});
@@ -21,12 +22,10 @@ const pickRandom = function(fromHere) {
 const genRandom = function(howMany) {
 	const result = Array(howMany);
 	for(var i = 0;i < howMany;i++) {
-		if(Math.random() > 0.5) { //A number
+		if(Math.random() > 0.5) //A number
 			result[i] = (Math.random() * 100).toFixed(2);
-		}
-		else { //A symbol
+		else //A symbol
 			result[i] = pickRandom(genRandom.chars);
-		}
 	}
 	return result;
 };
