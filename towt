@@ -1,7 +1,7 @@
 #!/bin/bash
-#$1: Parent folder of wt. Must not have a trailing slash.
+#$1: Parent folder of wt.
 cd ..
-rsync -avr web-tools/ "$1"/wt --exclude .git --exclude index.html --exclude readme.md --exclude towt --exclude Xidash --exclude nu.py --exclude swin.xml
+rsync -avr web-tools/ "$1"/wt --exclude .git --exclude index.html --exclude readme.md --exclude towt --exclude Xidash --exclude nu.py --exclude swin.xml --exclude Oendlorna
 cd "$1"/wt
 patch Timer/Timer_English.html linkindex.patch
 mv RandomMath rm
@@ -13,3 +13,5 @@ mv sm/Swinmoi.html sm/index.html
 mv tm/Timer_Korean.html tm/index.html
 mv am/Amuneoh.html am/index.html
 rm linkindex.patch
+rm LICENSE
+rm tm/Timer_English.html.orig
