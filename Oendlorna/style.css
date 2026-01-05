@@ -1,0 +1,145 @@
+/*:root {
+	--backpanel: #dadada;
+	--frontpanel: #f6f6f6;
+	--forwardpanel: #f0f0f0;
+	--strongpanel: #d4d4d4;
+	--textpanel: var(--forwardpanel);
+	--toptext: #222222;
+	--gentext: #020202;
+}*/
+
+:root {
+	--backpanel: #070707;
+	--frontpanel: #000000;
+	--forwardpanel: #0e0e0e;
+	--strongpanel: #333333;
+	--textpanel: var(--forwardpanel);
+	--toptext: #d2d2d2;
+	--gentext: #f4f4f4;
+}
+
+body {
+	font-family: sans-serif;
+	line-height: 1.6;
+	margin: 0;
+	background-color: var(--backpanel);
+}
+
+.container {
+	max-width: 82%;
+	margin: auto;
+	background-color: var(--frontpanel);
+	padding: 8px;
+	border-radius: 8px;
+}
+
+/* Settings */
+.settings {
+	background-color: var(--forwardpanel);
+	padding: 5px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	border: 1px solid var(--toptext);
+}
+
+.settings label {
+	font-weight: bold;
+	color: var(--toptext);
+}
+
+.slider {
+	display: inline;
+}
+
+label:has(> input[type="file"]), input[type="file"] {
+	padding-left: 10px;
+}
+
+/* Content */
+.content-area {
+	font-size: 1.3rem;
+	width: 48%;
+	background-color: var(--textpanel);
+	color: var(--gentext);
+}
+
+/* Buttons area */
+button, .button-like-label {
+	background-color: #007bff;
+	color: white !important;
+	padding: 10px 15px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: bold;
+	transition: background-color 0.2s ease;
+}
+
+button:hover, .button-like-label:hover {
+	background-color: #0056b3;
+}
+
+.subpanel {
+	background-color: var(--strongpanel);
+	padding: 9px 4px;
+	border-radius: 4px;
+}
+
+span {
+	color: var(--toptext);
+}
+
+/* Info rack */
+#errorDisplay {
+	text-shadow: 2px 2px 2px red;
+}
+
+#statusBlinker {
+	margin-left: 6px;
+	--indicator-active: #aaff55;
+	--indicator-inactive: #ff4411;
+}
+
+.blinker-inactive {
+	display: none;
+}
+.blinker-active {
+	animation: anim-blinker 3s linear infinite;
+	text-shadow: 2px 2px 2px var(--indicator-active);
+}
+.notice-active:before,.blinker-active:before {
+	content: "GENERATION IN PROGRESS";
+}
+@keyframes anim-blinker {
+	50% {
+		opacity: 0;
+	}
+}
+
+.glow-inactive {
+	width: 1rem;
+	height: 1rem;
+	border-radius: 50%;
+	display: inline-block;
+	background-color: var(--indicator-inactive);
+}
+.glow-active {
+	width: 1rem;
+	height: 1rem;
+	border-radius: 50%;
+	display: inline-block;
+	background-color: var(--indicator-active);
+	animation: anim-glow 2.5s ease-in-out infinite alternate;
+}
+@keyframes anim-glow {
+	0% {
+		box-shadow: 0 0 10px var(--indicator-active), 0 0 20px var(--indicator-active);
+	}
+	50% {
+		box-shadow: 0 0 20px var(--indicator-active), 0 0 40px var(--indicator-active), 0 0 50px var(--indicator-active);
+	}
+	100% {
+		box-shadow: 0 0 12px var(--indicator-active), 0 0 24px var(--indicator-active);
+	}
+}

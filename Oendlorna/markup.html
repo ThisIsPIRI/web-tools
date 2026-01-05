@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Oendlorna</title>
+	<script src="config.js"></script>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<textarea class="content-area" id="inputText" rows="30" placeholder="Enter prompt..."></textarea>
+		<textarea class="content-area" id="outputText" rows="30" placeholder="Generated text will apppear here"></textarea>
+		<br>
+		<button id="sendButton">Generate</button>
+		<span class="subpanel">
+			Reverse paste format:
+			<select id="instructSelect"></select>
+			<button id="instructUndoButton">Undo last reverse paste</button>
+		</span>
+		<span id="statusBlinker"></span>
+		<span id="errorDisplay"></span>
+		<div class="settings">
+			<div id="genConfigDiv">
+				<!--Populated programmatically-->
+			</div>
+			<div id="uiConfigDiv">
+				<!--Populated programmatically-->
+			</div>
+			<label>Load settings from file...<input type="file" id="settingFile"></label>
+		</div>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>

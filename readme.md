@@ -4,6 +4,9 @@ Use [here](https://phost.gitlab.io).
 ## Amuneoh
 A barebones text editor for trying out different scripts and fonts.
 
+## Oendlorna
+A minimalist LLM frontend.
+
 ## Random Math
 Generates nonsense in the mathematical notation.
 

@@ -1,0 +1,8 @@
+{
+	"temperature": 1,
+	"top_a": 0.04,
+	"min_p": 0.0,
+	"smoothing_factor": 0.2,
+	"repetition_penalty": 1.02,
+	"repetition_penalty_range": 1024
+}
