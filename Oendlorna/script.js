@@ -168,7 +168,7 @@ ConfigManager.prototype.setConfig = function(config) {
 	}
 	for(let i = 0;i < this.checkboxes.length;i++) {
 		if(config[this.checkboxes[i].id] !== undefined)
-			this.checkboxes[i].value = config[this.checkboxes[i].id];
+			this.checkboxes[i].checked = config[this.checkboxes[i].id];
 	}
 	this.updateValueSpans();
 };
