@@ -1,14 +1,15 @@
-/*:root {
-	--backpanel: #dadada;
-	--frontpanel: #f6f6f6;
-	--forwardpanel: #f0f0f0;
+body.light-mode {
+	--backpanel: #d6d6d6;
+	--frontpanel: #e7e7e7;
+	--forwardpanel: #dfdfdf;
 	--strongpanel: #d4d4d4;
 	--textpanel: var(--forwardpanel);
 	--toptext: #222222;
 	--gentext: #020202;
-}*/
+}
 
-:root {
+/* Dark mode by default */
+body.dark-mode, :root {
 	--backpanel: #070707;
 	--frontpanel: #000000;
 	--forwardpanel: #0e0e0e;

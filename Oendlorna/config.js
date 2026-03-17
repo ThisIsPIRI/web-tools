@@ -8,6 +8,7 @@ const DEFAULT_PRESET = {
 };
 const DEFAULT_INSTRUCT_FORMAT = "none"; // Values: see INSTRUCT_FORMATS
 const INDICATOR_TYPE = "glow"; // Values: notice, blinker, glow; see CSS
+const UI_THEME = "dark-mode"; // Values: dark-mode, light-mode
 const DISABLED_KEYS = new Set(["F5", "F7"]);
 
 
@@ -15,7 +16,7 @@ const DISABLED_KEYS = new Set(["F5", "F7"]);
 const GEN_PARAMS = [
 	{
 		name: "temperature",
-		min: 0, max: 2, def: 1
+		min: 0, max: 3, def: 1
 	},
 	{
 		name: "top_a",

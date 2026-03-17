@@ -275,3 +275,4 @@ document.addEventListener("keydown", handleKeyEvent);
 
 if(DEFAULT_PRESET != null)
 	configManager.setConfig(DEFAULT_PRESET);
+document.getElementsByTagName("body")[0].classList.add(UI_THEME);
