@@ -30,7 +30,7 @@ const handleStream = async function*(readableStream) {
 		let decoded = decoder.decode(chunk);
 		decoded = decoded.substring(decoded.indexOf('{')).trim(); // Remove 'data: ' at the start. Sometimes there are duplicate 'data: ' substrings, so slice(6) won't work.
 		let jsons;
-		if(decoded.indexOf("\ndata: {") >= 0) // Sometimes we get two 'data: ' rows in the same chunk.
+		if(decoded.indexOf("\ndata: ") >= 0) // Sometimes we get two 'data: ' rows in the same chunk.
 			jsons = decoded.split("\ndata: ");
 		else
 			jsons = [decoded];
