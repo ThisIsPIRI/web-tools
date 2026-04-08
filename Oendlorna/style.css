@@ -144,3 +144,22 @@ span {
 		box-shadow: 0 0 12px var(--indicator-active), 0 0 24px var(--indicator-active);
 	}
 }
+
+#dropZone {
+	color: var(--gentext);
+	min-height: 200px;
+	text-align: center;
+	font-size: 150%;
+	border: 1px solid var(--toptext);
+}
+
+.file-hovering {
+	border-color: var(--strongpanel) !important;
+}
+
+img {
+	max-width: 100%;
+	max-height: 1000px;
+	margin: 10px;
+	cursor: pointer;
+}

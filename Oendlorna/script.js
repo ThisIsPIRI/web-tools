@@ -1,7 +1,21 @@
 "use strict";
 
-const requestGeneration = function(url, prompt, config, doStream = false) {
-	const requestBody = Object.assign(config, { prompt: prompt, stream: doStream });
+const requestGeneration = function(url, prompt, config, doStream = false, images = []) {
+	const requestBody = Object.assign(config, { stream: doStream });
+	if(images.length > 0) {
+		images = images.map(x => {
+			return {
+				type: "image_url",
+				image_url: { url: x }
+			};
+		});
+		requestBody.messages = [{
+			role: "user",
+			content: [{ type: "text", text: prompt }, ...images]
+		}];
+	}
+	else
+		requestBody.prompt = prompt;
 
 	return fetch(url, {
 		method: "POST",
@@ -38,7 +52,6 @@ const handleStream = async function*(readableStream) {
 			// Discard unwanted transmissions, including "[DONE]" and "ping"
 			if(j[0] !== '{' && j.indexOf('"text"') < 0)
 				continue;
-			//console.log(j);
 			yield JSON.parse(j).choices[0].text;
 		}
 	}
@@ -95,7 +108,7 @@ RequestManager.prototype.tryGenerate = function() {
 	pasteManager.forward();
 	this.setState(RequestManager.OPEN);
 
-	requestGeneration(API_URL, inputText.value, configManager.getConfig(), doStream)
+	requestGeneration(API_URL, inputText.value, configManager.getConfig(), doStream, imageManager.getSortedImages())
 	.then(async (result) => {
 		if(doStream) {
 			this.stream = result;
@@ -236,6 +249,76 @@ PasteManager.prototype.addOutput = function(text) {
 
 
 
+const ImageManager = function(dropZone) {
+	this.dropZone = dropZone;
+	this.images = new Map();
+	this.nextId = 0;
+	dropZone.addEventListener("dragover", ImageManager.prototype.handleDragOver.bind(this));
+	dropZone.addEventListener("dragleave", ImageManager.prototype.handleDragLeave.bind(this));
+	dropZone.addEventListener("drop", ImageManager.prototype.handleDrop.bind(this));
+};
+
+ImageManager.prototype.handleDragOver = function(e) {
+	e.preventDefault();
+	this.dropZone.classList.add("file-hovering");
+};
+
+ImageManager.prototype.handleDragLeave = function(e) {
+	e.preventDefault();
+	this.dropZone.classList.remove("file-hovering");
+};
+
+ImageManager.prototype.handleDrop = function(e) {
+	e.preventDefault();
+	this.dropZone.classList.remove("file-hovering");
+
+	const files = event.dataTransfer.files;
+	if(files.length > 0) {
+		const img = files[0];
+		if(img.type.startsWith("image/")) {
+			const reader = new FileReader();
+			reader.onload = (e) => {
+				const id = this.nextId;
+				this.nextId++;
+				this.addImage(e.target.result, id);
+			};
+			reader.readAsDataURL(img);
+		}
+	}
+};
+
+ImageManager.prototype.addImage = function(base64String, id) {
+	this.images.set(id, base64String);
+	const imgElement = document.createElement("img");
+	imgElement.src = base64String;
+	imgElement.dataset.id = id;
+	imgElement.addEventListener("contextmenu", (e) => {
+		e.preventDefault();
+		this.removeImage(id);
+	});
+	this.dropZone.appendChild(imgElement);
+};
+
+ImageManager.prototype.removeImage = function(id) {
+	this.images.delete(id);
+	this.dropZone.removeChild(this.dropZone.querySelector(`[data-id="${id}"]`));
+};
+
+ImageManager.prototype.getSortedImages = function() {
+	return [...this.images].sort((a, b) => a[0] - b[0]).map(x => x[1]);
+};
+
+
+
+const insertAtCaret = function(textarea, value) {
+	const start = textarea.selectionStart;
+	const end = textarea.selectionEnd;
+	textarea.value = textarea.value.slice(0, start) + value + textarea.value.slice(end);
+	// Preserve caret position
+	textarea.selectionStart = start + value.length;
+	textarea.selectionEnd = start + value.length;
+};
+
 const handleKeyEvent = function(e) {
 	if(e.key === "Enter") {
 		if(e.getModifierState("Control") || e.getModifierState("Alt")) {
@@ -252,6 +335,10 @@ const handleKeyEvent = function(e) {
 	else if(e.key === " " && e.getModifierState("Control")) {
 		inputText.focus();
 		e.preventDefault();
+	}
+	else if(e.key === "m" && e.getModifierState("Alt")) {
+		if(inputText === document.activeElement)
+			insertAtCaret(inputText, "<__media__>");
 	}
 	else if(DISABLED_KEYS.has(e.key))
 		e.preventDefault();
@@ -270,6 +357,7 @@ const configManager = new FiledConfigManager(GEN_PARAMS, document.getElementById
 const uiConfigManager = new ConfigManager(UI_PARAMS, document.getElementById("uiConfigDiv"));
 const pasteManager = new PasteManager(document.getElementById("outputText"), document.getElementById("instructSelect"), document.getElementById("instructUndoButton"), DEFAULT_INSTRUCT_FORMAT);
 const requestManager = new RequestManager(document.getElementById("sendButton"), document.getElementById("errorDisplay"), document.getElementById("statusBlinker"), INDICATOR_TYPE);
+const imageManager = new ImageManager(document.getElementById("dropZone"));
 
 document.addEventListener("keydown", handleKeyEvent);
 
