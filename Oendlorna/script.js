@@ -163,6 +163,7 @@ const ConfigManager = function(parameters, container) {
 };
 
 ConfigManager.prototype.getConfig = function() {
+	// TODO Check parameter names for KoboldCPP
 	const config = {};
 	for(let i = 0;i < this.sliders.length;i++) {
 		config[this.sliders[i].id] = this.sliders[i].value;
@@ -272,7 +273,7 @@ ImageManager.prototype.handleDrop = function(e) {
 	e.preventDefault();
 	this.dropZone.classList.remove("file-hovering");
 
-	const files = event.dataTransfer.files;
+	const files = e.dataTransfer.files;
 	if(files.length > 0) {
 		const img = files[0];
 		if(img.type.startsWith("image/")) {

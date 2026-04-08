@@ -36,7 +36,7 @@ const GEN_PARAMS = [
 		min: 1, max: 2, def: 1
 	},
 	{
-		name: "penalty_range",
+		name: "repetition_penalty_range",
 		min: 0, max: 8192, def: 2048, step: 256
 	},
 	{
