@@ -10,6 +10,7 @@ const DEFAULT_INSTRUCT_FORMAT = "none"; // Values: see INSTRUCT_FORMATS
 const INDICATOR_TYPE = "glow"; // Values: notice, blinker, glow; see CSS
 const UI_THEME = "dark-mode"; // Values: dark-mode, light-mode
 const DISABLED_KEYS = new Set(["F5", "F7"]);
+const TEXTAREA_ROWS = 30;
 
 
 

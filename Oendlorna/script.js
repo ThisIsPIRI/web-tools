@@ -273,6 +273,10 @@ const requestManager = new RequestManager(document.getElementById("sendButton"),
 
 document.addEventListener("keydown", handleKeyEvent);
 
+for(const area of document.getElementsByTagName("textarea")) {
+	area.rows = TEXTAREA_ROWS;
+}
+document.getElementsByTagName("body")[0].classList.add(UI_THEME);
+
 if(DEFAULT_PRESET != null)
 	configManager.setConfig(DEFAULT_PRESET);
-document.getElementsByTagName("body")[0].classList.add(UI_THEME);
