@@ -1,12 +1,12 @@
 # 왼들오르나
 
-Minimalist raw text completion web frontend for local OpenAI-like LLM APIs. Tested with [tabbyAPI](https://github.com/theroyallab/tabbyAPI), [text-generation-webui](https://github.com/oobabooga/text-generation-webui), and [KoboldCPP](https://github.com/LostRuins/koboldcpp).
+Minimalist raw text completion web frontend for local OpenAI-like LLM APIs. Tested with [tabbyAPI](https://github.com/theroyallab/tabbyAPI), [TextGen](https://github.com/oobabooga/textgen), and [KoboldCPP](https://github.com/LostRuins/koboldcpp).
 
 ## Features
 - Streaming generation
 - A few select parameters
 - Presets for these parameters
-- Image input at arbitrary positions (text-generation-webui only)
+- Image input at arbitrary positions (TextGen only)
 - All in a single HTML file (after running `./build-singlefile`)
 
 ## Dependencies

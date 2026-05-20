@@ -41,7 +41,7 @@ const GEN_PARAMS = [
 	},
 	{
 		name: "max_tokens",
-		min: 32, max: 2048, def: 384, step: 32
+		min: 64, max: 4096, def: 512, step: 64
 	},
 	{ name: "add_bos_token", def: true }
 ];
@@ -53,7 +53,8 @@ const INSTRUCT_FORMATS = {
 	llama3: "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
 	cmdr: "\n\n<|END_OF_TURN_TOKEN|><|START_OF_TURN_TOKEN|><|USER_TOKEN|>\n\n<|END_OF_TURN_TOKEN|><|START_OF_TURN_TOKEN|><|CHATBOT_TOKEN|>",
 	chatml: "<|im_end|>\n<|im_start|>user\n<|im_end|>\n<|im_start|>assistant\n",
-	gemma: "<end_of_turn>\n<start_of_turn>user\n<end_of_turn>\n<start_of_turn>model\n",
+	gemma3: "<end_of_turn>\n<start_of_turn>user\n<end_of_turn>\n<start_of_turn>model\n",
+	gemma4: "<turn|>\n<|turn>user\n<turn|>\n<|turn>model\n",
 	mistral: "\n[INST]\n\n[/INST]\n",
 	deepseek: "<｜end▁of▁sentence｜>\n<｜User｜>\n<｜Assistant｜>",
 	glm: "<|user|>\n<|assistant|>\n"
