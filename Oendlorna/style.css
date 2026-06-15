@@ -100,17 +100,21 @@ span {
 	margin-left: 6px;
 	--indicator-active: #aaff55;
 	--indicator-inactive: #ff4411;
+	--indicator-interrupting: #eeee55;
 }
 
 .blinker-inactive {
 	display: none;
 }
-.blinker-active {
+.blinker-active,.blinker-interrupting {
 	animation: anim-blinker 3s linear infinite;
 	text-shadow: 2px 2px 2px var(--indicator-active);
 }
 .notice-active:before,.blinker-active:before {
 	content: "GENERATION IN PROGRESS";
+}
+.notice-interrupting:before,.blinker-interrupting:before {
+	content: "INTERRUPTING GENERATION";
 }
 @keyframes anim-blinker {
 	50% {
@@ -118,19 +122,22 @@ span {
 	}
 }
 
-.glow-inactive {
+.glow-inactive,.glow-active,.glow-interrupting {
 	width: 1rem;
 	height: 1rem;
 	border-radius: 50%;
 	display: inline-block;
+}
+.glow-inactive {
 	background-color: var(--indicator-inactive);
 }
 .glow-active {
-	width: 1rem;
-	height: 1rem;
-	border-radius: 50%;
-	display: inline-block;
 	background-color: var(--indicator-active);
+	animation: anim-glow 2.5s ease-in-out infinite alternate;
+}
+.glow-interrupting {
+	/* The outer glow is still green, but that's ok */
+	background-color: var(--indicator-interrupting);
 	animation: anim-glow 2.5s ease-in-out infinite alternate;
 }
 @keyframes anim-glow {

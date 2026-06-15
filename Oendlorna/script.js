@@ -86,6 +86,7 @@ RequestManager.prototype.setState = function(newState) {
 	if(newState === RequestManager.INTERRUPTED) {
 		if(this.state === RequestManager.CLOSED)
 			return;
+		this.statusBlinker.className = `${this.indicatorType}-interrupting`;
 		this.stream?.return();
 	}
 	else if(newState === RequestManager.OPEN) {
