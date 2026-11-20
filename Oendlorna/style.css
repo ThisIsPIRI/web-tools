@@ -153,6 +153,7 @@ span {
 }
 
 #dropZone {
+	position: relative;
 	color: var(--gentext);
 	min-height: 200px;
 	text-align: center;
@@ -160,13 +161,23 @@ span {
 	border: 1px solid var(--toptext);
 }
 
+#dropHint {
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+}
+
 .file-hovering {
 	border-color: var(--strongpanel) !important;
 }
 
 img {
+	position: relative;
 	max-width: 100%;
-	max-height: 1000px;
-	margin: 10px;
+	max-height: 500px;
+	margin: 5px;
 	cursor: pointer;
+	z-index: 2;
 }
